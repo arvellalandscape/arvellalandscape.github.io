@@ -119,6 +119,7 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
 .hero-right{
   transform:translateX(100px);
   animation-name:heroFromRight}
+.hero-line{display:block}
 @keyframes heroFromLeft{
   from{
     opacity:0;
