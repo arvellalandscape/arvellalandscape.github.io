@@ -109,7 +109,7 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
 /* HERO TEXT SPLIT ANIMATION */
 
 .hero-left,
-.hero-right{opacity:0;will-change:transform, opacity;animation-duration:.8s;animation-timing-function:ease-out;animation-delay:.15s;animation-fill-mode:forwards}
+.hero-right{opacity:0;will-change:transform, opacity;animation-duration:.8s;animation-timing-function:ease-out;animation-delay:.1.5s;animation-fill-mode:forwards}
 
 /* Muncul dari kiri */
 .hero-left{
