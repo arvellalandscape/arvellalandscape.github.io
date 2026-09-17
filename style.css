@@ -100,40 +100,66 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
 }
 /* NAVBAR DROP-IN ANIMATION */
 
-.nav{animation:navDrop .9s ease-out .1.5s both;will-change:transform, opacity}
-@keyframes navDrop{from{opacity:0;transform:translateY(-80px)}to{opacity:1;transform:translateY(0)}
+.nav{
+  animation:navDrop .9s ease-out 1.5s both;
+  will-change:transform, opacity}
+
+@keyframes navDrop{
+  from{
+    opacity:0;
+    transform:translateY(-80px)}
+
+  to{
+    opacity:1;
+    transform:translateY(0)}
 }
-@media (prefers-reduced-motion: reduce){
-  .nav{animation:none;opacity:1;transform:none}
-}
+
+
 /* HERO TEXT SPLIT ANIMATION */
 
-.hero-left,
-.hero-right{opacity:0;will-change:transform, opacity;animation-duration:.1,3s;animation-timing-function:ease-out;animation-delay:.1.5s;animation-fill-mode:forwards}
+.hero-line{
+  display:block}
 
-/* Muncul dari kiri */
 .hero-left{
-  transform:translateX(-100px);animation-name:heroFromLeft}
+  opacity:0;
+  transform:translateX(-100px);
+  animation:heroFromLeft 1.3s ease-out 1.5s both;
+  will-change:transform, opacity}
 
-/* Muncul dari kanan */
 .hero-right{
+  opacity:0;
   transform:translateX(100px);
-  animation-name:heroFromRight}
-.hero-line{display:block}
+  animation:heroFromRight 1.3s ease-out 1.5s both;
+  will-change:transform, opacity}
+
 @keyframes heroFromLeft{
   from{
     opacity:0;
     transform:translateX(-100px)}
+
   to{
-    opacity:1;transform:translateX(0)}
+    opacity:1;
+    transform:translateX(0)}
 }
+
 @keyframes heroFromRight{
   from{
-    opacity:0;transform:translateX(100px)}
+    opacity:0;
+    transform:translateX(100px)}
+
   to{
-    opacity:1;transform:translateX(0)}
+    opacity:1;
+    transform:translateX(0)}
 }
+
+
+/* REDUCE MOTION */
+
 @media (prefers-reduced-motion: reduce){
+  .nav,
   .hero-left,
-  .hero-right{opacity:1;transform:none;animation:none}
+  .hero-right{
+    opacity:1;
+    transform:none;
+    animation:none}
 }
