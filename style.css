@@ -100,9 +100,24 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
 }
 /* NAVBAR DROP-IN ANIMATION */
 
-.nav{animation: navDrop .8s cubic-bezier(.22,.61,.36,1) .1s both;will-change: transform, opacity}
-@keyframes navDrop{0%{opacity:0;transform:translateY(-80px)}70%{opacity:1;transform:translateY(8px)}100%{opacity:1;transform:translateY(0)}
+.nav{
+  animation:navDrop .7s ease-out .1s both;
+  will-change:transform, opacity
+}
+@keyframes navDrop{
+  from{
+    opacity:0;
+    transform:translateY(-80px)
+  }
+  to{
+    opacity:1;
+    transform:translateY(0)
+  }
 }
 @media (prefers-reduced-motion: reduce){
-  .nav{animation:none;opacity:1;transform:none}
+  .nav{
+    animation:none;
+    opacity:1;
+    transform:none
+  }
 }
