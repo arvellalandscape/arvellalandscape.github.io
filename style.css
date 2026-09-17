@@ -106,3 +106,33 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
 @media (prefers-reduced-motion: reduce){
   .nav{animation:none;opacity:1;transform:none}
 }
+/* HERO TEXT SPLIT ANIMATION */
+
+.hero-left,
+.hero-right{opacity:0;will-change:transform, opacity;animation-duration:.8s;animation-timing-function:ease-out;animation-delay:.15s;animation-fill-mode:forwards}
+
+/* Muncul dari kiri */
+.hero-left{
+  transform:translateX(-100px);animation-name:heroFromLeft}
+
+/* Muncul dari kanan */
+.hero-right{
+  transform:translateX(100px);
+  animation-name:heroFromRight}
+@keyframes heroFromLeft{
+  from{
+    opacity:0;
+    transform:translateX(-100px)}
+  to{
+    opacity:1;transform:translateX(0)}
+}
+@keyframes heroFromRight{
+  from{
+    opacity:0;transform:translateX(100px)}
+  to{
+    opacity:1;transform:translateX(0)}
+}
+@media (prefers-reduced-motion: reduce){
+  .hero-left,
+  .hero-right{opacity:1;transform:none;animation:none}
+}
