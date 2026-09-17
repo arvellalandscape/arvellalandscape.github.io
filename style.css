@@ -100,7 +100,7 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
 }
 /* NAVBAR DROP-IN ANIMATION */
 
-.nav{animation:navDrop .7s ease-out .1s both;will-change:transform, opacity}
+.nav{animation:navDrop .7s ease-out .1.5s both;will-change:transform, opacity}
 @keyframes navDrop{from{opacity:0;transform:translateY(-80px)}to{opacity:1;transform:translateY(0)}
 }
 @media (prefers-reduced-motion: reduce){
