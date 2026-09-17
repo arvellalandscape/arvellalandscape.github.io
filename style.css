@@ -102,7 +102,7 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
 /* NAVBAR DROP-IN ANIMATION */
 
 .nav{
-  animation:navDrop .9s ease-out 1s both;
+  animation:navDrop .9s ease-out 0.7s both;
   will-change:transform, opacity}
 
 @keyframes navDrop{
@@ -124,13 +124,13 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
 .hero-left{
   opacity:0;
   transform:translateX(-100px);
-  animation:heroFromLeft 1.3s ease-out 1s both;
+  animation:heroFromLeft 1.3s ease-out 0.7s both;
   will-change:transform, opacity}
 
 .hero-right{
   opacity:0;
   transform:translateX(100px);
-  animation:heroFromRight 1.3s ease-out 1s both;
+  animation:heroFromRight 1.3s ease-out 0.7s both;
   will-change:transform, opacity}
 
 @keyframes heroFromLeft{
