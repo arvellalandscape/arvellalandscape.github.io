@@ -193,15 +193,27 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
 /* SERVICE CARDS ONE-TIME REVEAL */
 
 .service-card{
-  opacity:0;
-  transform:translateY(90px);
-  transition:
-    opacity 2.5s ease-out,
-    transform 1.8s cubic-bezier(.22,.61,.36,1);
-  will-change:opacity, transform;
-}
-
-.service-card.is-visible{
   opacity:1;
   transform:translateY(0);
+}
+
+/* Only hide cards after JavaScript has successfully installed the observer. */
+#services.services-reveal-ready .service-card:not(.is-visible){
+  opacity:0;
+  transform:translateY(70px);
+}
+
+#services.services-reveal-ready .service-card.is-visible{
+  opacity:1;
+  transform:translateY(0);
+  transition:opacity 1.2s ease-out, transform 1.2s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce){
+  #services.services-reveal-ready .service-card:not(.is-visible),
+  #services.services-reveal-ready .service-card.is-visible{
+    opacity:1;
+    transform:none;
+    transition:none;
+  }
 }
