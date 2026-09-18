@@ -158,6 +158,8 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
     padding:10px;
     position:relative;
     z-index:100001;
+    opacity:1;
+    visibility:visible;
   }
 
   .menu-toggle span{
@@ -166,68 +168,77 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
     height:3px;
     background:#fff!important;
     border-radius:2px;
-    transition:transform .28s ease, opacity .18s ease, background-color .2s ease;
+  }
+
+  body.menu-open .menu-toggle,
+  body.menu-closing .menu-toggle{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+  }
+
+  body.menu-open .nav .brand,
+  body.menu-closing .nav .brand{
+    opacity:0;
+    pointer-events:none;
+  }
+
+  .menu-close{
+    position:absolute;
+    top:13px;
+    right:calc(4.5vw + 10px);
+    width:56px;
+    height:56px;
+    border:0;
+    outline:none;
+    box-shadow:none;
+    background:transparent;
+    -webkit-appearance:none;
+    appearance:none;
+    -webkit-tap-highlight-color:transparent;
+    cursor:pointer;
+    z-index:2;
+    opacity:0;
+    visibility:hidden;
+    transform:rotate(0deg);
+  }
+
+  .menu-close:focus,
+  .menu-close:active{
+    outline:none;
+    box-shadow:none;
+    background:transparent;
+  }
+
+  .menu-close span{
+    position:absolute;
+    left:10px;
+    top:26px;
+    width:36px;
+    height:3px;
+    border-radius:2px;
+    background:#142018;
     transform-origin:center;
   }
 
-  body.menu-open .nav .brand{
-    opacity:0;
+  .menu-close span:first-child{transform:rotate(45deg)}
+  .menu-close span:last-child{transform:rotate(-45deg)}
+
+  body.menu-open .menu-close{
+    opacity:1;
+    visibility:visible;
+  }
+
+  body.menu-open.menu-closing .menu-close{
+    opacity:1;
+    visibility:visible;
+    animation:menuCloseSpin .5s ease-in-out forwards;
     pointer-events:none;
-  }
-
-  body.menu-open .menu-toggle span{
-    position:absolute;
-    background:#142018!important;
-  }
-
-  body.menu-open .menu-toggle span:nth-child(1){
-    transform:rotate(45deg);
-  }
-
-  body.menu-open .menu-toggle span:nth-child(2){
-    opacity:0;
-  }
-
-  body.menu-open .menu-toggle span:nth-child(3){
-    transform:rotate(-45deg);
-  }
-
-  body.menu-open.menu-closing .menu-toggle{
-    animation:menuCloseSpin .46s ease-in-out forwards;
-    pointer-events:none;
-  }
-
-  body.menu-resetting .menu-toggle{
-    visibility:hidden!important;
-    opacity:0!important;
-    animation:none!important;
-    transform:none!important;
-    pointer-events:none;
-  }
-
-  body.menu-resetting .menu-toggle span{
-    transition:none!important;
-    transform:none!important;
-    opacity:1!important;
-    position:static!important;
-    background:#fff!important;
   }
 
   @keyframes menuCloseSpin{
-    0%{
-      transform:rotate(0deg);
-      opacity:1;
-    }
-    66%{
-      opacity:1;
-    }
-    86%{
-      opacity:0;
-    }
-    100%{
-      transform:rotate(360deg);
-      opacity:0;
-    }
+    from{transform:rotate(0deg)}
+    to{transform:rotate(360deg)}
   }
 
   body.brand-return-pending .nav .brand{
