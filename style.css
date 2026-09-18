@@ -179,22 +179,13 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
     transform:none;
     animation:none}
 }
-/* PHILOSOPHY ONE-TIME INTRO */
+/* PHILOSOPHY ONE-TIME REVEAL */
 
 .intro-main .display-text{
   opacity:0;
   transform:translateY(70px);
-  animation:philosophyIntro 1s ease-out 0.3s forwards
-}
+  transition:opacity 1s ease-out, transform 1s ease-out}
 
-@keyframes philosophyIntro{
-  from{
-    opacity:0;
-    transform:translateY(70px)
-  }
-
-  to{
-    opacity:1;
-    transform:translateY(0)
-  }
-}
+.intro-main .display-text.is-visible{
+  opacity:1;
+  transform:translateY(0)}
