@@ -251,7 +251,7 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
     gap:22px;
   }
 
-  .menu-panel-links a{
+  .menu-panel-item{
     display:flex;
     align-items:center;
     justify-content:space-between;
@@ -260,11 +260,16 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
     letter-spacing:-.025em;
     color:var(--ink);
     text-decoration:none;
+    cursor:default;
   }
 
   .menu-panel-links b{
+    display:block;
     font-size:.7em;
     font-weight:400;
+    line-height:1;
+    color:var(--ink);
+    opacity:1;
   }
 
   body.menu-open .menu-close{
