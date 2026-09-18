@@ -29,33 +29,60 @@ document.addEventListener("DOMContentLoaded", () => {
 
     observer.observe(philosophyText);
   }
-// Service cards one-time reveal
-const serviceGrid = document.querySelector(".service-grid");
-const serviceCards = document.querySelectorAll(".service-card");
+});
 
-if (serviceGrid && serviceCards.length) {
-  const serviceObserver = new IntersectionObserver(
-    (entries, observer) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
+// Separate setup keeps an error in another component from hiding the services.
+document.addEventListener("DOMContentLoaded", () => {
+  const section = document.querySelector("#services");
+  if (!section) return;
+  const cards = Array.from(section.querySelectorAll(".service-card"));
+  if (!cards.length) return;
 
-          setTimeout(() => {
-            serviceCards.forEach((card, index) => {
-              setTimeout(() => {
-                card.classList.add("is-visible");
-              }, index * 180);
-            });
-          }, 400);
+  let observer;
+  let revealed = false;
+  const finish = () => {
+    section.classList.remove("services-reveal-ready");
+    cards.forEach((card) => {
+      if (!card.classList.contains("is-visible")) card.classList.add("is-visible");
+    });
+  };
 
-          observer.unobserve(entry.target);
-        }
-      });
-    },
-    {
-      threshold:0.15
+  try {
+    if (
+      typeof window.IntersectionObserver !== "function" ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      finish();
+      return;
     }
-  );
 
-  serviceObserver.observe(serviceGrid);
-}
-  
+    observer = new IntersectionObserver((entries) => {
+      if (revealed || !entries.some((entry) => entry.isIntersecting)) return;
+      revealed = true;
+      // Release hidden state even if a stagger callback fails.
+      window.setTimeout(finish, (cards.length - 1) * 180 + 1400);
+      try {
+        observer.disconnect();
+        cards.forEach((card, index) => {
+          window.setTimeout(() => {
+            try {
+              card.classList.add("is-visible");
+            } catch (error) {
+              finish();
+            }
+          }, index * 180);
+        });
+      } catch (error) {
+        finish();
+      }
+    }, { threshold: 0 });
+
+    observer.observe(section);
+    section.classList.add("services-reveal-ready");
+    // Commit the hidden start position before a possible initial intersection.
+    section.getBoundingClientRect();
+  } catch (error) {
+    finish();
+    if (observer) observer.disconnect();
+  }
+});
