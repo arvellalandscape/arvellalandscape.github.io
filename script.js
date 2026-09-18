@@ -46,11 +46,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       replayBrandDrop();
 
-      // Keep the button physically hidden for a short beat after the panel reaches height: 0.
-      // This guarantees the old X frame is never painted after the panel is closed.
-      window.setTimeout(() => {
+      // X is already fully invisible before height reaches 0.
+      // Restore the hamburger state on the next paint after the panel is truly closed.
+      window.requestAnimationFrame(() => {
         body.classList.remove("menu-resetting");
-      }, 120);
+      });
     };
 
     if (menuPanel) {
