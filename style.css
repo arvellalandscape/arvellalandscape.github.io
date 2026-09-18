@@ -99,6 +99,8 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
   .section-label{font-size:14px}
   .hero-meta{position:absolute;right:5vw;bottom:7vh;display:flex;gap:50px;font-family:var(--display);font-size:16px;font-weight:700;letter-spacing:.06em;opacity:1}
   .intro-bottom{padding-left:0}
+  .project-info span{font-size:12px;}
+  .project-info h3{font-size:22px}
 }
 /* NAVBAR DROP-IN ANIMATION */
 
