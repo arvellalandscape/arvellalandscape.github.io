@@ -5,10 +5,57 @@ document.addEventListener("DOMContentLoaded", () => {
   // Hamburger menu
   if (menuToggle && menu) {
     const menuPanel = document.querySelector(".menu-panel");
-    const CLOSE_DURATION = 450;
-    let closeTimer = null;
+    const brand = document.querySelector(".nav .brand");
+    let closeFallbackTimer = null;
+    let closeFinalized = false;
 
     menuToggle.setAttribute("aria-expanded", "false");
+
+    const replayBrandDrop = () => {
+      if (!brand) return;
+
+      document.body.classList.add("brand-return-pending");
+      brand.classList.remove("brand-returning");
+      void brand.offsetWidth;
+
+      window.requestAnimationFrame(() => {
+        brand.classList.add("brand-returning");
+        document.body.classList.remove("brand-return-pending");
+
+        brand.addEventListener(
+          "animationend",
+          () => brand.classList.remove("brand-returning"),
+          { once: true }
+        );
+      });
+    };
+
+    const finalizeDesktopClose = () => {
+      if (closeFinalized) return;
+      closeFinalized = true;
+      window.clearTimeout(closeFallbackTimer);
+
+      const body = document.body;
+      body.classList.add("brand-return-pending");
+      body.classList.remove("menu-open", "menu-closing");
+
+      menuToggle.setAttribute("aria-label", "Open menu");
+      menuToggle.setAttribute("aria-expanded", "false");
+
+      replayBrandDrop();
+    };
+
+    if (menuPanel) {
+      menuPanel.addEventListener("transitionend", (event) => {
+        if (
+          event.target === menuPanel &&
+          event.propertyName === "height" &&
+          document.body.classList.contains("menu-closing")
+        ) {
+          finalizeDesktopClose();
+        }
+      });
+    }
 
     menuToggle.addEventListener("click", () => {
       if (window.matchMedia("(min-width: 801px)").matches) {
@@ -19,24 +66,25 @@ document.addEventListener("DOMContentLoaded", () => {
         if (isClosing) return;
 
         if (!isOpen) {
-          window.clearTimeout(closeTimer);
-          body.classList.remove("menu-closing");
+          window.clearTimeout(closeFallbackTimer);
+          closeFinalized = false;
+          body.classList.remove("menu-closing", "brand-return-pending");
+          if (brand) brand.classList.remove("brand-returning");
           body.classList.add("menu-open");
+
           menuToggle.setAttribute("aria-expanded", "true");
           menuToggle.setAttribute("aria-label", "Close menu");
           if (menuPanel) menuPanel.setAttribute("aria-hidden", "false");
           return;
         }
 
+        closeFinalized = false;
         body.classList.add("menu-closing");
         menuToggle.setAttribute("aria-expanded", "false");
         if (menuPanel) menuPanel.setAttribute("aria-hidden", "true");
 
-        closeTimer = window.setTimeout(() => {
-          body.classList.remove("menu-open", "menu-closing");
-          menuToggle.setAttribute("aria-label", "Open menu");
-        }, CLOSE_DURATION);
-
+        // Safety fallback only; transitionend is the primary close trigger.
+        closeFallbackTimer = window.setTimeout(finalizeDesktopClose, 700);
         return;
       }
 
