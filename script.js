@@ -114,3 +114,56 @@ document.addEventListener("DOMContentLoaded", () => {
     if (observer) observer.disconnect();
   }
 });
+
+// Momentary press feedback; independent of the one-time reveal.
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll("#services .service-card").forEach((card) => {
+    let pointerId = null;
+    let key = null;
+    const paint = () => card.classList.toggle("is-pressed", pointerId !== null || key !== null);
+    const release = () => {
+      pointerId = null;
+      key = null;
+      paint();
+    };
+    card.setAttribute("tabindex", "0");
+    card.setAttribute("role", "button");
+    card.setAttribute("aria-label", card.querySelector("h2").innerText.replace(/\s+/g, " ").trim());
+
+    card.addEventListener("pointerdown", (event) => {
+      if (!event.isPrimary || event.button !== 0) return;
+      pointerId = event.pointerId;
+      paint();
+      // Receive the release even when the pointer moves outside the card.
+      try { card.setPointerCapture(event.pointerId); } catch (error) {}
+    });
+    const releasePointer = (event) => {
+      if (event.pointerId !== pointerId) return;
+      pointerId = null;
+      paint();
+    };
+    window.addEventListener("pointerup", releasePointer);
+    window.addEventListener("pointercancel", releasePointer);
+    card.addEventListener("lostpointercapture", releasePointer);
+    card.addEventListener("keydown", (event) => {
+      if (event.key !== " " && event.key !== "Enter") return;
+      event.preventDefault();
+      key = event.key;
+      paint();
+    });
+    card.addEventListener("keyup", (event) => {
+      if (event.key !== key) return;
+      event.preventDefault();
+      key = null;
+      paint();
+    });
+    card.addEventListener("blur", release);
+    window.addEventListener("blur", release);
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) release();
+    });
+    card.addEventListener("contextmenu", (event) => {
+      if (pointerId !== null) event.preventDefault();
+    });
+  });
+});
