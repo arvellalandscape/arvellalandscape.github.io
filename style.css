@@ -278,6 +278,22 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
     visibility:visible;
   }
 
+  .menu-panel-item:last-child{
+    position:relative;
+    padding-bottom:14px;
+  }
+
+  .menu-panel-item:last-child::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:calc(100% - 10px);
+    height:1px;
+    background:#142018;
+    opacity:.85;
+  }
+
   body.menu-open .menu-close{
     opacity:1;
     visibility:visible;
