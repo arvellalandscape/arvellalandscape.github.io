@@ -115,43 +115,88 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// Timed press feedback; independent of release and the one-time reveal.
+// Double-press feedback; the card only pops after two quick presses.
 document.addEventListener("DOMContentLoaded", () => {
+  const DOUBLE_PRESS_WINDOW = 400;
+
   document.querySelectorAll("#services .service-card").forEach((card) => {
-    let timer = null;
-    const reset = () => {
-      window.clearTimeout(timer);
-      timer = null;
+    let popTimer = null;
+    let doublePressTimer = null;
+    let lastPressTime = 0;
+
+    const resetPop = () => {
+      window.clearTimeout(popTimer);
+      popTimer = null;
       card.classList.remove("is-pressed");
     };
-    const pulse = () => {
-      window.clearTimeout(timer);
-      card.classList.add("is-pressed");
-      // A fresh press starts a fresh second; holding does not repeat.
-      timer = window.setTimeout(reset, 1000);
+
+    const resetDoublePress = () => {
+      window.clearTimeout(doublePressTimer);
+      doublePressTimer = null;
+      lastPressTime = 0;
     };
+
+    const pop = () => {
+      resetPop();
+      card.classList.add("is-pressed");
+      // Keep the card raised for one second, independent of finger/mouse release.
+      popTimer = window.setTimeout(resetPop, 1000);
+    };
+
+    const registerPress = () => {
+      const now = Date.now();
+
+      if (lastPressTime && now - lastPressTime <= DOUBLE_PRESS_WINDOW) {
+        resetDoublePress();
+        pop();
+        return;
+      }
+
+      lastPressTime = now;
+      window.clearTimeout(doublePressTimer);
+      doublePressTimer = window.setTimeout(resetDoublePress, DOUBLE_PRESS_WINDOW);
+    };
+
     card.setAttribute("tabindex", "0");
     card.setAttribute("role", "button");
-    card.setAttribute("aria-label", card.querySelector("h2").innerText.replace(/\s+/g, " ").trim());
+    card.setAttribute(
+      "aria-label",
+      card.querySelector("h2").innerText.replace(/\s+/g, " ").trim()
+    );
 
-    card.addEventListener("pointerdown", (event) => {
+    card.addEventListener("pointerup", (event) => {
       if (!event.isPrimary || event.button !== 0) return;
-      pulse();
+      registerPress();
     });
+
+    card.addEventListener("pointercancel", resetDoublePress);
+
     card.addEventListener("keydown", (event) => {
       if (event.key !== " " && event.key !== "Enter") return;
       event.preventDefault();
-      if (!event.repeat) pulse();
+      if (!event.repeat) registerPress();
     });
+
     card.addEventListener("keyup", (event) => {
       if (event.key === " " || event.key === "Enter") event.preventDefault();
     });
-    window.addEventListener("blur", reset);
-    document.addEventListener("visibilitychange", () => {
-      if (document.hidden) reset();
+
+    window.addEventListener("blur", () => {
+      resetDoublePress();
+      resetPop();
     });
+
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) {
+        resetDoublePress();
+        resetPop();
+      }
+    });
+
     card.addEventListener("contextmenu", (event) => {
-      if (event.pointerType === "touch" || timer !== null) event.preventDefault();
+      if (event.pointerType === "touch" || popTimer !== null) {
+        event.preventDefault();
+      }
     });
   });
 });
