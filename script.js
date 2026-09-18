@@ -115,9 +115,9 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// Double-press feedback; the card only pops after two quick presses.
+// Two-press feedback; the second press can happen anytime within 2.5 seconds.
 document.addEventListener("DOMContentLoaded", () => {
-  const DOUBLE_PRESS_WINDOW = 400;
+  const DOUBLE_PRESS_WINDOW = 2500;
 
   document.querySelectorAll("#services .service-card").forEach((card) => {
     let popTimer = null;
