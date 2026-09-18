@@ -23,10 +23,33 @@ document.addEventListener("DOMContentLoaded", () => {
         });
       },
       {
-        threshold: 0.15
+        threshold:0.15
       }
     );
 
     observer.observe(philosophyText);
+  }
+
+  // Service cards one-time reveal
+  const serviceCards = document.querySelectorAll(".service-card");
+
+  if (serviceCards.length) {
+    const serviceObserver = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            obs.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold:0.15
+      }
+    );
+
+    serviceCards.forEach((card) => {
+      serviceObserver.observe(card);
+    });
   }
 });
