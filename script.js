@@ -36,13 +36,22 @@ document.addEventListener("DOMContentLoaded", () => {
       window.clearTimeout(closeFallbackTimer);
 
       const body = document.body;
-      body.classList.add("brand-return-pending");
+
+      // Hide the closing X completely before restoring the hamburger state.
+      body.classList.add("menu-resetting", "brand-return-pending");
       body.classList.remove("menu-open", "menu-closing");
 
       menuToggle.setAttribute("aria-label", "Open menu");
       menuToggle.setAttribute("aria-expanded", "false");
 
       replayBrandDrop();
+
+      // Restore the hamburger only after the X state is fully gone.
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => {
+          body.classList.remove("menu-resetting");
+        });
+      });
     };
 
     if (menuPanel) {
