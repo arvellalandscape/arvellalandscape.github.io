@@ -241,6 +241,32 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
   .menu-close span:first-child{transform:rotate(45deg)}
   .menu-close span:last-child{transform:rotate(-45deg)}
 
+  .menu-panel-links{
+    position:absolute;
+    top:122px;
+    left:4.5vw;
+    right:4.5vw;
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+  }
+
+  .menu-panel-links a{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    width:100%;
+    font:600 clamp(24px,2.5vw,38px)/1.1 var(--display);
+    letter-spacing:-.025em;
+    color:var(--ink);
+    text-decoration:none;
+  }
+
+  .menu-panel-links b{
+    font-size:.7em;
+    font-weight:400;
+  }
+
   body.menu-open .menu-close{
     opacity:1;
     visibility:visible;
