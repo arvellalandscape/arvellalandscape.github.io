@@ -99,6 +99,9 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
   .section-label{font-size:14px}
   .work-head > p{font-size:17px;line-height:1.6}
   .hero-meta{position:absolute;right:5vw;bottom:7vh;display:flex;gap:50px;font-family:var(--display);font-size:16px;font-weight:700;letter-spacing:.06em;opacity:1}
+  .location-title{display:block;text-align:center}
+  .location-year{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:6px;font-size:.75em;letter-spacing:.08em}
+  .location-year i{font-style:normal;opacity:.7}
   .intro-bottom{padding-left:0}
   .project-info span{font-size:12px;}
   .project-info h3{font-size:22px}
