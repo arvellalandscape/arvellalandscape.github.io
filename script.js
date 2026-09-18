@@ -4,13 +4,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Hamburger menu
   if (menuToggle && menu) {
+    const menuPanel = document.querySelector(".menu-panel");
+    const CLOSE_DURATION = 450;
+    let closeTimer = null;
+
     menuToggle.setAttribute("aria-expanded", "false");
 
     menuToggle.addEventListener("click", () => {
       if (window.matchMedia("(min-width: 801px)").matches) {
-        const isOpen = document.body.classList.toggle("menu-open");
-        menuToggle.setAttribute("aria-expanded", String(isOpen));
-        menuToggle.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+        const body = document.body;
+        const isOpen = body.classList.contains("menu-open");
+        const isClosing = body.classList.contains("menu-closing");
+
+        if (isClosing) return;
+
+        if (!isOpen) {
+          window.clearTimeout(closeTimer);
+          body.classList.remove("menu-closing");
+          body.classList.add("menu-open");
+          menuToggle.setAttribute("aria-expanded", "true");
+          menuToggle.setAttribute("aria-label", "Close menu");
+          if (menuPanel) menuPanel.setAttribute("aria-hidden", "false");
+          return;
+        }
+
+        body.classList.add("menu-closing");
+        menuToggle.setAttribute("aria-expanded", "false");
+        if (menuPanel) menuPanel.setAttribute("aria-hidden", "true");
+
+        closeTimer = window.setTimeout(() => {
+          body.classList.remove("menu-open", "menu-closing");
+          menuToggle.setAttribute("aria-label", "Open menu");
+        }, CLOSE_DURATION);
+
         return;
       }
 
