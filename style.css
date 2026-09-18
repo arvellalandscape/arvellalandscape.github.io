@@ -195,6 +195,23 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
 .service-card{
   opacity:1;
   transform:translateY(0);
+  scale:1;
+  cursor:pointer;
+  user-select:none;
+  -webkit-user-select:none;
+  -webkit-touch-callout:none;
+  transition:scale .18s ease-out, box-shadow .18s ease-out;
+}
+
+.service-card.is-pressed{
+  scale:1.035;
+  box-shadow:0 18px 40px rgba(0,0,0,.35);
+  z-index:2;
+}
+
+.service-card:focus-visible{
+  outline:2px solid currentColor;
+  outline-offset:4px;
 }
 
 /* Only hide cards after JavaScript has successfully installed the observer. */
@@ -206,7 +223,8 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
 #services.services-reveal-ready .service-card.is-visible{
   opacity:1;
   transform:translateY(0);
-  transition:opacity 2.2s ease-out, transform 2.2s ease-out;
+  transition:opacity 2.2s ease-out, transform 2.2s ease-out,
+    scale .18s ease-out, box-shadow .18s ease-out;
 }
 
 @media (prefers-reduced-motion: reduce){
@@ -216,4 +234,9 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
     transform:none;
     transition:none;
   }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .service-card{transition:none;}
+  .service-card.is-pressed{scale:1;}
 }
