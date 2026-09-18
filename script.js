@@ -46,12 +46,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
       replayBrandDrop();
 
-      // Restore the hamburger only after the X state is fully gone.
-      window.requestAnimationFrame(() => {
-        window.requestAnimationFrame(() => {
-          body.classList.remove("menu-resetting");
-        });
-      });
+      // Keep the button physically hidden for a short beat after the panel reaches height: 0.
+      // This guarantees the old X frame is never painted after the panel is closed.
+      window.setTimeout(() => {
+        body.classList.remove("menu-resetting");
+      }, 120);
     };
 
     if (menuPanel) {
