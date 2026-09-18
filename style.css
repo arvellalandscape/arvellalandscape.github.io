@@ -97,10 +97,13 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
   .hero-copy{max-width: 500px;font-size: 18px; line-height: 1.65;margin: 38px 0}
   .round-link{font-size:18px;font-weight:700}
   .section-label{font-size:14px}
+  .work-head > p{font-size:17px;line-height:1.6}
   .hero-meta{position:absolute;right:5vw;bottom:7vh;display:flex;gap:50px;font-family:var(--display);font-size:16px;font-weight:700;letter-spacing:.06em;opacity:1}
   .intro-bottom{padding-left:0}
   .project-info span{font-size:12px;}
   .project-info h3{font-size:22px}
+  .service-number{font-size:14px;opacity:.8}
+  .service-card p{font-size:16px;line-height:1.7}
 }
 /* NAVBAR DROP-IN ANIMATION */
 
