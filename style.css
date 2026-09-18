@@ -188,6 +188,18 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
     pointer-events:none;
   }
 
+  .menu-panel::after{
+    content:"";
+    position:absolute;
+    left:4.5vw;
+    right:4.5vw;
+    top:82px;
+    height:1px;
+    background:#142018;
+    opacity:.85;
+    z-index:1;
+  }
+
   .menu-close{
     position:absolute;
     top:13px;
