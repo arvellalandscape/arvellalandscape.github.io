@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (revealed || !entries.some((entry) => entry.isIntersecting)) return;
       revealed = true;
       // Release hidden state even if a stagger callback fails.
-      window.setTimeout(finish, (cards.length - 1) * 180 + 1400);
+      window.setTimeout(finish, (cards.length - 1) * 180 + 2400);
       try {
         observer.disconnect();
         cards.forEach((card, index) => {
