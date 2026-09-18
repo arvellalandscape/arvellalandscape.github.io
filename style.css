@@ -42,7 +42,7 @@ a{color:inherit;text-decoration:none}
 .service-card{min-height:510px;padding:35px;background:#314638;border-right:1px solid rgba(242,240,232,.2);position:relative;display:flex;flex-direction:column;justify-content:space-between}
 .service-card:last-child{border-right:0}
 .service-number{font-size:10px;opacity:.55}
-.service-card h2{font:600 clamp(35px,4vw,62px)/.92 var(--display);letter-spacing:-.05em;margin-top:auto;transform:translateY(8px)}
+.service-card h2{font:600 clamp(35px,4vw,62px)/.92 var(--display);letter-spacing:-.05em;margin-top:auto;transform:translateY(12px)}
 .service-card h2 em{font:400 1.05em var(--serif)}
 .service-card p{font-size:13px;line-height:1.7;max-width:300px;color:#b9c0b9;margin-top:35px}
 .service-arrow{position:absolute;right:32px;top:32px;font-size:22px}
@@ -104,6 +104,8 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
   .project-info h3{font-size:22px}
   .service-number{font-size:14px;opacity:.8}
   .service-card p{font-size:16px;line-height:1.7}
+  .statement h2{font-size:145px}
+  .contact h2{font-size:140px}
 }
 /* NAVBAR DROP-IN ANIMATION */
 
