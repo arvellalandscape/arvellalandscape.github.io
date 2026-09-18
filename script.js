@@ -12,20 +12,31 @@ document.addEventListener("DOMContentLoaded", () => {
 
     menuToggle.setAttribute("aria-expanded", "false");
 
-    const replayBrandDrop = () => {
-      if (!brand) return;
+    const replayNavReturn = () => {
+      const body = document.body;
 
-      document.body.classList.add("brand-return-pending");
-      brand.classList.remove("brand-returning");
-      void brand.offsetWidth;
+      body.classList.add("nav-return-pending");
+      if (brand) brand.classList.remove("brand-returning");
+      menuToggle.classList.remove("menu-toggle-returning");
+
+      void menuToggle.offsetWidth;
 
       window.requestAnimationFrame(() => {
-        brand.classList.add("brand-returning");
-        document.body.classList.remove("brand-return-pending");
+        if (brand) brand.classList.add("brand-returning");
+        menuToggle.classList.add("menu-toggle-returning");
+        body.classList.remove("nav-return-pending");
 
-        brand.addEventListener(
+        if (brand) {
+          brand.addEventListener(
+            "animationend",
+            () => brand.classList.remove("brand-returning"),
+            { once: true }
+          );
+        }
+
+        menuToggle.addEventListener(
           "animationend",
-          () => brand.classList.remove("brand-returning"),
+          () => menuToggle.classList.remove("menu-toggle-returning"),
           { once: true }
         );
       });
@@ -37,14 +48,14 @@ document.addEventListener("DOMContentLoaded", () => {
       window.clearTimeout(closeFallbackTimer);
 
       const body = document.body;
-      body.classList.add("brand-return-pending");
+      body.classList.add("nav-return-pending");
       body.classList.remove("menu-open", "menu-closing");
 
       menuToggle.setAttribute("aria-expanded", "false");
       menuToggle.setAttribute("aria-label", "Open menu");
       if (menuPanel) menuPanel.setAttribute("aria-hidden", "true");
 
-      replayBrandDrop();
+      replayNavReturn();
     };
 
     const closeDesktopMenu = () => {
@@ -77,8 +88,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         window.clearTimeout(closeFallbackTimer);
         closeFinalized = false;
-        body.classList.remove("brand-return-pending");
+        body.classList.remove("nav-return-pending");
         if (brand) brand.classList.remove("brand-returning");
+        menuToggle.classList.remove("menu-toggle-returning");
 
         body.classList.add("menu-open");
         menuToggle.setAttribute("aria-expanded", "true");
