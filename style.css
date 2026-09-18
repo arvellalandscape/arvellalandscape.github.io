@@ -81,6 +81,7 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
 @media(max-width:800px){
  .desktop-menu,.nav-cta{display:none}.menu-toggle{display:flex;flex-direction:column;gap:5px}.menu-toggle span{display:block;width:24px;height:1px;background:#111!important}
  .hero{padding:0 6vw 7vh}.hero h1{font-size:18vw}.hero-meta{display:none}
+ .display-text{font-size:7.5vw;line-height:1.02;}
  .section{padding:100px 6vw}.section-label{margin-bottom:35px}
  .intro-main{margin:0}.intro-bottom{padding-left:0;display:block;margin-top:45px}.text-link{display:inline-block;margin-top:28px}
  .service-grid{grid-template-columns:1fr}.service-card{min-height:400px;border-right:0;border-bottom:1px solid rgba(242,240,232,.2)}
