@@ -237,13 +237,20 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
   body.menu-open.menu-closing .menu-close{
     opacity:1;
     visibility:visible;
-    animation:menuCloseSpin .5s ease-in-out forwards;
+    animation:menuCloseShrink .18s ease-in forwards;
     pointer-events:none;
+    transform-origin:center;
   }
 
-  @keyframes menuCloseSpin{
-    from{transform:rotate(0deg)}
-    to{transform:rotate(360deg)}
+  @keyframes menuCloseShrink{
+    from{
+      transform:scale(1);
+      opacity:1;
+    }
+    to{
+      transform:scale(0);
+      opacity:0;
+    }
   }
 
   body.brand-return-pending .nav .brand{
