@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Hamburger menu
   if (menuToggle && menu) {
     const menuPanel = document.querySelector(".menu-panel");
+    const menuClose = document.querySelector(".menu-close");
     const brand = document.querySelector(".nav .brand");
     let closeFallbackTimer = null;
     let closeFinalized = false;
@@ -36,21 +37,25 @@ document.addEventListener("DOMContentLoaded", () => {
       window.clearTimeout(closeFallbackTimer);
 
       const body = document.body;
-
-      // Hide the closing X completely before restoring the hamburger state.
-      body.classList.add("menu-resetting", "brand-return-pending");
+      body.classList.add("brand-return-pending");
       body.classList.remove("menu-open", "menu-closing");
 
-      menuToggle.setAttribute("aria-label", "Open menu");
       menuToggle.setAttribute("aria-expanded", "false");
+      menuToggle.setAttribute("aria-label", "Open menu");
+      if (menuPanel) menuPanel.setAttribute("aria-hidden", "true");
 
       replayBrandDrop();
+    };
 
-      // X is already fully invisible before height reaches 0.
-      // Restore the hamburger state on the next paint after the panel is truly closed.
-      window.requestAnimationFrame(() => {
-        body.classList.remove("menu-resetting");
-      });
+    const closeDesktopMenu = () => {
+      const body = document.body;
+      if (!body.classList.contains("menu-open") || body.classList.contains("menu-closing")) return;
+
+      closeFinalized = false;
+      body.classList.add("menu-closing");
+      menuToggle.setAttribute("aria-expanded", "false");
+
+      closeFallbackTimer = window.setTimeout(finalizeDesktopClose, 700);
     };
 
     if (menuPanel) {
@@ -68,36 +73,30 @@ document.addEventListener("DOMContentLoaded", () => {
     menuToggle.addEventListener("click", () => {
       if (window.matchMedia("(min-width: 801px)").matches) {
         const body = document.body;
-        const isOpen = body.classList.contains("menu-open");
-        const isClosing = body.classList.contains("menu-closing");
+        if (body.classList.contains("menu-open") || body.classList.contains("menu-closing")) return;
 
-        if (isClosing) return;
-
-        if (!isOpen) {
-          window.clearTimeout(closeFallbackTimer);
-          closeFinalized = false;
-          body.classList.remove("menu-closing", "brand-return-pending");
-          if (brand) brand.classList.remove("brand-returning");
-          body.classList.add("menu-open");
-
-          menuToggle.setAttribute("aria-expanded", "true");
-          menuToggle.setAttribute("aria-label", "Close menu");
-          if (menuPanel) menuPanel.setAttribute("aria-hidden", "false");
-          return;
-        }
-
+        window.clearTimeout(closeFallbackTimer);
         closeFinalized = false;
-        body.classList.add("menu-closing");
-        menuToggle.setAttribute("aria-expanded", "false");
-        if (menuPanel) menuPanel.setAttribute("aria-hidden", "true");
+        body.classList.remove("brand-return-pending");
+        if (brand) brand.classList.remove("brand-returning");
 
-        // Safety fallback only; transitionend is the primary close trigger.
-        closeFallbackTimer = window.setTimeout(finalizeDesktopClose, 700);
+        body.classList.add("menu-open");
+        menuToggle.setAttribute("aria-expanded", "true");
+        menuToggle.setAttribute("aria-label", "Close menu");
+        if (menuPanel) menuPanel.setAttribute("aria-hidden", "false");
         return;
       }
 
       menu.classList.toggle("mobile-open");
     });
+
+    if (menuClose) {
+      menuClose.addEventListener("click", () => {
+        if (window.matchMedia("(min-width: 801px)").matches) {
+          closeDesktopMenu();
+        }
+      });
+    }
   }
 
   // Philosophy one-time reveal
