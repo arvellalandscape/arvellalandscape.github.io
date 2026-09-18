@@ -2,9 +2,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const menuToggle = document.querySelector(".menu-toggle");
   const menu = document.querySelector(".desktop-menu");
 
-  // Mobile menu
+  // Hamburger menu
   if (menuToggle && menu) {
+    menuToggle.setAttribute("aria-expanded", "false");
+
     menuToggle.addEventListener("click", () => {
+      if (window.matchMedia("(min-width: 801px)").matches) {
+        const isOpen = document.body.classList.toggle("menu-open");
+        menuToggle.setAttribute("aria-expanded", String(isOpen));
+        menuToggle.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+        return;
+      }
+
       menu.classList.toggle("mobile-open");
     });
   }
