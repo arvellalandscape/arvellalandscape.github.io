@@ -133,7 +133,7 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
   }
 
   body.menu-open .menu-panel{
-    height:clamp(350px,38vh,520px);
+    height:clamp(402px,43.7vh,598px);
     opacity:1;
     pointer-events:auto;
   }
@@ -142,7 +142,7 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
     height:0;
     opacity:0;
     pointer-events:none;
-    transition:height .45s ease, opacity .3s ease;
+    transition:height .5s ease, opacity .34s ease;
   }
 
   .menu-toggle{
@@ -194,13 +194,34 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
   }
 
   body.menu-open.menu-closing .menu-toggle{
-    animation:menuCloseSpin .45s ease-in-out forwards;
+    animation:menuCloseSpin .5s ease-in-out forwards;
     pointer-events:none;
   }
 
   @keyframes menuCloseSpin{
     from{transform:rotate(0deg)}
     to{transform:rotate(360deg)}
+  }
+
+  body.brand-return-pending .nav .brand{
+    opacity:0;
+    transform:translateY(-58px);
+    pointer-events:none;
+  }
+
+  .nav .brand.brand-returning{
+    animation:brandDropReturn .72s cubic-bezier(.22,.61,.36,1) both;
+  }
+
+  @keyframes brandDropReturn{
+    from{
+      opacity:0;
+      transform:translateY(-58px);
+    }
+    to{
+      opacity:1;
+      transform:translateY(0);
+    }
   }
 
   .hero h1{font-size: 180px !important;line-height: .82}
