@@ -193,7 +193,7 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
   }
 
   body.menu-open.menu-closing .menu-toggle{
-    animation:menuCloseSpin .5s ease-in-out forwards;
+    animation:menuCloseSpin .46s ease-in-out forwards;
     pointer-events:none;
   }
 
@@ -218,10 +218,10 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
       transform:rotate(0deg);
       opacity:1;
     }
-    68%{
+    66%{
       opacity:1;
     }
-    92%{
+    86%{
       opacity:0;
     }
     100%{
