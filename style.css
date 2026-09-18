@@ -252,10 +252,11 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
   }
 
   .menu-panel-item{
-    display:flex;
+    display:inline-flex;
     align-items:center;
-    justify-content:space-between;
-    width:100%;
+    justify-content:flex-start;
+    gap:10px;
+    width:max-content;
     font:600 clamp(24px,2.5vw,38px)/1.1 var(--display);
     letter-spacing:-.025em;
     color:var(--ink);
@@ -264,12 +265,12 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
   }
 
   .menu-panel-links b{
-    display:block;
-    flex:0 0 34px;
-    min-width:34px;
-    text-align:right;
+    display:inline-block;
+    flex:none;
+    min-width:0;
+    text-align:left;
     font-family:Arial,Helvetica,sans-serif;
-    font-size:28px;
+    font-size:.75em;
     font-weight:400;
     line-height:1;
     color:#142018;
