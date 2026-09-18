@@ -29,27 +29,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
     observer.observe(philosophyText);
   }
+// Service cards one-time reveal
+const serviceGrid = document.querySelector(".service-grid");
+const serviceCards = document.querySelectorAll(".service-card");
 
-  // Service cards one-time reveal
-  const serviceCards = document.querySelectorAll(".service-card");
+if (serviceGrid && serviceCards.length) {
+  const serviceObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
 
-  if (serviceCards.length) {
-    const serviceObserver = new IntersectionObserver(
-      (entries, obs) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-            obs.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold:0.15
-      }
-    );
+          setTimeout(() => {
+            serviceCards.forEach((card, index) => {
+              setTimeout(() => {
+                card.classList.add("is-visible");
+              }, index * 180);
+            });
+          }, 400);
 
-    serviceCards.forEach((card) => {
-      serviceObserver.observe(card);
-    });
-  }
-});
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold:0.15
+    }
+  );
+
+  serviceObserver.observe(serviceGrid);
+}
+  
