@@ -184,7 +184,7 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
 .intro-main .display-text{
   opacity:0;
   transform:translateY(70px);
-  transition:opacity 1.5s ease-out, transform 1s ease-out}
+  transition:opacity 1s ease-out, transform 0.5s ease-out}
 
 .intro-main .display-text.is-visible{
   opacity:1;
