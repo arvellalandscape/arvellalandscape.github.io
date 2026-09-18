@@ -115,16 +115,20 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// Momentary press feedback; independent of the one-time reveal.
+// Timed press feedback; independent of release and the one-time reveal.
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll("#services .service-card").forEach((card) => {
-    let pointerId = null;
-    let key = null;
-    const paint = () => card.classList.toggle("is-pressed", pointerId !== null || key !== null);
-    const release = () => {
-      pointerId = null;
-      key = null;
-      paint();
+    let timer = null;
+    const reset = () => {
+      window.clearTimeout(timer);
+      timer = null;
+      card.classList.remove("is-pressed");
+    };
+    const pulse = () => {
+      window.clearTimeout(timer);
+      card.classList.add("is-pressed");
+      // A fresh press starts a fresh second; holding does not repeat.
+      timer = window.setTimeout(reset, 1000);
     };
     card.setAttribute("tabindex", "0");
     card.setAttribute("role", "button");
@@ -132,38 +136,22 @@ document.addEventListener("DOMContentLoaded", () => {
 
     card.addEventListener("pointerdown", (event) => {
       if (!event.isPrimary || event.button !== 0) return;
-      pointerId = event.pointerId;
-      paint();
-      // Receive the release even when the pointer moves outside the card.
-      try { card.setPointerCapture(event.pointerId); } catch (error) {}
+      pulse();
     });
-    const releasePointer = (event) => {
-      if (event.pointerId !== pointerId) return;
-      pointerId = null;
-      paint();
-    };
-    window.addEventListener("pointerup", releasePointer);
-    window.addEventListener("pointercancel", releasePointer);
-    card.addEventListener("lostpointercapture", releasePointer);
     card.addEventListener("keydown", (event) => {
       if (event.key !== " " && event.key !== "Enter") return;
       event.preventDefault();
-      key = event.key;
-      paint();
+      if (!event.repeat) pulse();
     });
     card.addEventListener("keyup", (event) => {
-      if (event.key !== key) return;
-      event.preventDefault();
-      key = null;
-      paint();
+      if (event.key === " " || event.key === "Enter") event.preventDefault();
     });
-    card.addEventListener("blur", release);
-    window.addEventListener("blur", release);
+    window.addEventListener("blur", reset);
     document.addEventListener("visibilitychange", () => {
-      if (document.hidden) release();
+      if (document.hidden) reset();
     });
     card.addEventListener("contextmenu", (event) => {
-      if (pointerId !== null) event.preventDefault();
+      if (event.pointerType === "touch" || timer !== null) event.preventDefault();
     });
   });
 });
