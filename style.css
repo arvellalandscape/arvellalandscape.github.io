@@ -265,11 +265,16 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
 
   .menu-panel-links b{
     display:block;
-    font-size:.7em;
+    flex:0 0 34px;
+    min-width:34px;
+    text-align:right;
+    font-family:Arial,Helvetica,sans-serif;
+    font-size:28px;
     font-weight:400;
     line-height:1;
-    color:var(--ink);
+    color:#142018;
     opacity:1;
+    visibility:visible;
   }
 
   body.menu-open .menu-close{
