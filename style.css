@@ -125,7 +125,7 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
     width:100%;
     height:0;
     background:#fff;
-    z-index:99990;
+    z-index:100000;
     overflow:hidden;
     opacity:1;
     pointer-events:none;
@@ -177,6 +177,11 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
     pointer-events:none;
   }
 
+  body.menu-open .nav,
+  body.menu-closing .nav{
+    pointer-events:none;
+  }
+
   body.menu-open .nav .brand,
   body.menu-closing .nav .brand{
     opacity:0;
@@ -186,7 +191,7 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
   .menu-close{
     position:absolute;
     top:13px;
-    right:calc(4.5vw + 10px);
+    right:4.5vw;
     width:56px;
     height:56px;
     border:0;
