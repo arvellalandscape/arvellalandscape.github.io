@@ -68,6 +68,8 @@ a{color:inherit;text-decoration:none}
 .statement-overlay{position:absolute;inset:0;background:rgba(13,25,17,.5)}
 .statement-content{position:relative;z-index:2}
 .statement h2{font:600 clamp(55px,8vw,125px)/.9 var(--display);letter-spacing:-.065em}
+.statement h2 span,
+.statement h2 em{display:block}
 .contact{padding-bottom:110px}
 .contact-main{display:grid;grid-template-columns:1.3fr .7fr;gap:10%;align-items:end}
 .contact h2{font:600 clamp(55px,8vw,120px)/.88 var(--display);letter-spacing:-.065em}
