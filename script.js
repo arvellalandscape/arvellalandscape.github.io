@@ -56,6 +56,34 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
+    // Match the CSS single-column breakpoint: reveal each mobile card in view.
+    if (window.matchMedia("(max-width: 800px)").matches) {
+      const seen = new Set();
+      observer = new IntersectionObserver((entries) => {
+        try {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting || seen.has(entry.target)) return;
+            seen.add(entry.target);
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          });
+          if (seen.size === cards.length) {
+            observer.disconnect();
+            // Preserve the last card's full 2.2-second transition.
+            window.setTimeout(finish, 2400);
+          }
+        } catch (error) {
+          finish();
+          observer.disconnect();
+        }
+      }, { threshold: 0.15 });
+
+      cards.forEach((card) => observer.observe(card));
+      section.classList.add("services-reveal-ready");
+      section.getBoundingClientRect();
+      return;
+    }
+
     observer = new IntersectionObserver((entries) => {
       if (revealed || !entries.some((entry) => entry.isIntersecting)) return;
       revealed = true;
