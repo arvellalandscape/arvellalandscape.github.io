@@ -302,3 +302,40 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+// Language choices are presentation-only; translation is not enabled yet.
+document.addEventListener("DOMContentLoaded", () => {
+  const group = document.querySelector(".menu-language");
+  const panel = document.querySelector(".menu-panel");
+  if (!group || !panel) return;
+  const trigger = group.querySelector(".menu-globe");
+  const options = group.querySelector(".language-options");
+  const setOpen = (open) => {
+    group.classList.toggle("is-open", open);
+    panel.classList.toggle("languages-open", open);
+    trigger.setAttribute("aria-expanded", String(open));
+    options.setAttribute("aria-hidden", String(!open));
+    options.inert = !open;
+  };
+  trigger.addEventListener("click", () => {
+    setOpen(trigger.getAttribute("aria-expanded") !== "true");
+  });
+  group.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      event.preventDefault();
+      setOpen(false);
+      trigger.focus();
+    }
+  });
+  document.addEventListener("click", (event) => {
+    if (!group.contains(event.target)) setOpen(false);
+  });
+  options.querySelectorAll("button").forEach((option) => {
+    option.addEventListener("click", () => {
+      setOpen(false);
+      trigger.focus();
+    });
+  });
+  const close = panel.querySelector(".menu-close");
+  if (close) close.addEventListener("click", () => setOpen(false));
+});
