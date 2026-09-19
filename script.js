@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const menu = document.querySelector(".desktop-menu");
 
   // Hamburger menu
-  if (menuToggle && menu) {
+  if (menuToggle) {
     const menuPanel = document.querySelector(".menu-panel");
     const menuClose = document.querySelector(".menu-close");
     const brand = document.querySelector(".nav .brand");
@@ -82,32 +82,23 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     menuToggle.addEventListener("click", () => {
-      if (window.matchMedia("(min-width: 801px)").matches) {
-        const body = document.body;
-        if (body.classList.contains("menu-open") || body.classList.contains("menu-closing")) return;
+      const body = document.body;
+      if (body.classList.contains("menu-open") || body.classList.contains("menu-closing")) return;
 
-        window.clearTimeout(closeFallbackTimer);
-        closeFinalized = false;
-        body.classList.remove("nav-return-pending");
-        if (brand) brand.classList.remove("brand-returning");
-        menuToggle.classList.remove("menu-toggle-returning");
+      window.clearTimeout(closeFallbackTimer);
+      closeFinalized = false;
+      body.classList.remove("nav-return-pending");
+      if (brand) brand.classList.remove("brand-returning");
+      menuToggle.classList.remove("menu-toggle-returning");
 
-        body.classList.add("menu-open");
-        menuToggle.setAttribute("aria-expanded", "true");
-        menuToggle.setAttribute("aria-label", document.documentElement.lang === "id" ? "Tutup menu" : "Close menu");
-        if (menuPanel) menuPanel.setAttribute("aria-hidden", "false");
-        return;
-      }
-
-      menu.classList.toggle("mobile-open");
+      body.classList.add("menu-open");
+      menuToggle.setAttribute("aria-expanded", "true");
+      menuToggle.setAttribute("aria-label", document.documentElement.lang === "id" ? "Tutup menu" : "Close menu");
+      if (menuPanel) menuPanel.setAttribute("aria-hidden", "false");
     });
 
     if (menuClose) {
-      menuClose.addEventListener("click", () => {
-        if (window.matchMedia("(min-width: 801px)").matches) {
-          closeDesktopMenu();
-        }
-      });
+      menuClose.addEventListener("click", closeDesktopMenu);
     }
   }
 
