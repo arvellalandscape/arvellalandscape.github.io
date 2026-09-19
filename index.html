@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=41" />
+  <link rel="stylesheet" href="style.css?v=42" />
 </head>
 <body>
   
@@ -31,13 +31,21 @@
       <div class="menu-panel-item"><span>GOAL &amp; MISSION</span><b>↗</b></div>
       <div class="menu-panel-item"><span>SERVICE AREA</span><b>↗</b></div>
       <div class="menu-panel-item"><span>PORTFOLIO</span><b>↗</b></div>
-      <span class="menu-globe">
-        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+      <div class="menu-language">
+        <button class="menu-globe" type="button" aria-expanded="false" aria-controls="language-options">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
           <circle cx="12" cy="12" r="9"></circle>
           <path d="M3 12h18M12 3c2.6 2.5 4 5.5 4 9s-1.4 6.5-4 9M12 3c-2.6 2.5-4 5.5-4 9s1.4 6.5 4 9M5.2 7.5h13.6M5.2 16.5h13.6"></path>
         </svg>
-        <span>Languages</span>
-      </span>
+          <span>Languages</span>
+        </button>
+        <div class="language-options" id="language-options" aria-hidden="true" inert>
+          <div class="language-options-inner">
+            <button type="button" lang="id">Indonesia</button>
+            <button type="button" lang="en">Inggris</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -158,6 +166,6 @@
     <p>© 2026 Arvella Landscape</p>
   </footer>
 
-  <script src="script.js?v=28"></script>
+  <script src="script.js?v=29"></script>
 </body>
 </html>
