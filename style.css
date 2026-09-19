@@ -278,14 +278,90 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
     visibility:visible;
   }
 
+  .menu-language{
+    width:max-content;
+    margin-top:-2px;
+    font:500 18px/1.2 var(--display);
+    color:#142018;
+  }
+
   .menu-globe{
-    display:inline-flex;
+    display:flex;
     align-items:center;
     gap:8px;
     width:max-content;
-    margin-top:4px;
-    color:#142018;
-    font:500 18px/1.2 var(--display);
+    margin:0;
+    padding:0;
+    border:0;
+    background:transparent;
+    color:inherit;
+    font:inherit;
+    cursor:pointer;
+  }
+
+  .menu-globe,
+  .language-options button{
+    -webkit-appearance:none;
+    appearance:none;
+    -webkit-tap-highlight-color:transparent;
+    -webkit-touch-callout:none;
+    user-select:none;
+    touch-action:manipulation;
+  }
+
+  .menu-globe:focus-visible,
+  .language-options button:focus-visible{
+    outline:1px solid currentColor;
+    outline-offset:3px;
+  }
+
+  .language-options{
+    display:grid;
+    grid-template-rows:0fr;
+    margin-left:28px;
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(-8px);
+    transition:grid-template-rows .28s ease, opacity .28s ease,
+      transform .28s ease, visibility 0s .28s;
+  }
+
+  .language-options-inner{
+    min-height:0;
+    overflow:hidden;
+  }
+
+  .language-options button{
+    display:block;
+    width:100%;
+    border:0;
+    background:transparent;
+    color:inherit;
+    text-align:left;
+    padding:5px 0;
+    font:inherit;
+    font-size:90%;
+    cursor:pointer;
+  }
+
+  .language-options button:first-child{margin-top:8px}
+
+  .menu-language.is-open .language-options{
+    grid-template-rows:1fr;
+    opacity:1;
+    visibility:visible;
+    transform:translateY(0);
+    transition-delay:0s;
+  }
+
+  body.menu-open .menu-panel.languages-open{
+    height:calc(clamp(335px,34vw,380px) + 80px);
+  }
+
+  body.menu-open.menu-closing .menu-panel.languages-open{height:0}
+
+  @media (prefers-reduced-motion: reduce){
+    .language-options{transition:none;transform:none}
   }
 
   .menu-globe svg{
