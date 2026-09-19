@@ -331,6 +331,17 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
     outline-offset:3px;
   }
 
+  .menu-globe:focus:not(:focus-visible),
+  .language-options button:focus:not(:focus-visible){
+    outline:none;
+    box-shadow:none;
+  }
+
+  .language-options button:active{
+    background:transparent;
+    color:inherit;
+  }
+
   .language-options{
     display:grid;
     grid-template-rows:0fr;
