@@ -278,6 +278,25 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
     visibility:visible;
   }
 
+  .menu-globe{
+    display:block;
+    width:12px;
+    height:12px;
+    margin-top:-10px;
+    color:#142018;
+  }
+
+  .menu-globe svg{
+    display:block;
+    width:100%;
+    height:100%;
+    fill:none;
+    stroke:currentColor;
+    stroke-width:1.6;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+  }
+
   .menu-panel-item:last-child{
     position:relative;
     padding-bottom:14px;
