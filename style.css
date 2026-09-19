@@ -133,7 +133,7 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
   }
 
   body.menu-open .menu-panel{
-    height:clamp(402px,43.7vh,598px);
+    height:clamp(335px,34vw,380px);
     pointer-events:auto;
   }
 
