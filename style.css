@@ -86,6 +86,7 @@ a{color:inherit;text-decoration:none}
 .statement-bg{position:absolute;inset:0;background-image:url("https://images.unsplash.com/photo-1598902108854-10e335adac99?auto=format&fit=crop&w=2200&q=85");background-position:center 65%}
 .statement-overlay{position:absolute;inset:0;background:rgba(13,25,17,.5)}
 .statement-content{position:relative;z-index:2}
+.statement .eyebrow{font-size:11px}
 .statement h2{font:600 clamp(55px,8vw,125px)/.9 var(--display);letter-spacing:-.065em}
 .statement h2 span,
 .statement h2 em{display:block}
@@ -95,6 +96,7 @@ a{color:inherit;text-decoration:none}
 .contact-main>div p{font-size:14px;line-height:1.7;color:var(--muted);max-width:310px;margin-bottom:35px}
 .contact-button{display:flex;justify-content:space-between;gap:50px;width:100%;max-width:400px;border-bottom:1px solid var(--ink);padding-bottom:13px;font-size:12px}
 footer{padding:30px 4.5vw;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr 1fr;align-items:center}
+.footer-links a{white-space:nowrap}
 .footer-links{display:flex;gap:35px;justify-content:center;font-size:18px}
 footer p{text-align:right;color:var(--muted);font-size:10px}
 @media(max-width:800px){
@@ -433,16 +435,6 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
     transform-origin:center;
   }
 
-  @keyframes menuCloseShrink{
-    from{
-      transform:scale(1);
-      opacity:1;
-    }
-    to{
-      transform:scale(0);
-      opacity:0;
-    }
-  }
 
   body.nav-return-pending .nav .brand,
   body.nav-return-pending .menu-toggle{
@@ -488,7 +480,7 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
   .service-number{font-size:14px;opacity:.8}
   .service-card p{font-size:16px;line-height:1.7}
   .statement h2{font-size:105px}
-  .statement .eyebrow{font-size:15px;font-weight:800;letter-spacing:.18em}
+  .statement .eyebrow{font-size:16.5px;font-weight:800;letter-spacing:.18em}
   .contact h2{font-size:105px}
 }
 /* NAVBAR DROP-IN ANIMATION */
@@ -636,7 +628,7 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
     transition:height .35s ease;
   }
   body.menu-open .menu-panel{
-    height:270px;
+    height:252px;
     pointer-events:auto;
   }
   body.menu-open.menu-closing .menu-panel{
@@ -657,17 +649,17 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
     position:absolute;
     left:4.5vw;
     right:4.5vw;
-    top:82px;
+    top:64px;
     height:1px;
     background:#142018;
     opacity:.85;
   }
   .menu-close{
     position:absolute;
-    top:13px;
+    top:19px;
     right:4.5vw;
-    width:56px;
-    height:56px;
+    width:44px;
+    height:44px;
     border:0;
     background:transparent;
     z-index:2;
@@ -675,12 +667,17 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
     visibility:hidden;
   }
   body.menu-open .menu-close{opacity:1;visibility:visible}
+  body.menu-open.menu-closing .menu-close{
+    animation:menuCloseShrink .18s ease-in forwards;
+    pointer-events:none;
+    transform-origin:center;
+  }
   .menu-close span{
     position:absolute;
     left:10px;
-    top:26px;
-    width:36px;
-    height:3px;
+    top:21px;
+    width:24px;
+    height:1.5px;
     background:#142018;
     transform-origin:center;
   }
@@ -688,7 +685,7 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
   .menu-close span:last-child{transform:rotate(-45deg)}
   .menu-panel-links{
     position:absolute;
-    top:104px;
+    top:86px;
     left:4.5vw;
     right:4.5vw;
     display:flex;
@@ -731,7 +728,7 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
   .language-options-inner{overflow:hidden;display:flex;flex-direction:column;align-items:flex-start;gap:8px}
   .menu-language.is-open .language-options{grid-template-rows:1fr;opacity:1;margin-top:10px}
   .language-options button{border:0;background:transparent;padding:0;font:500 12px/1.2 var(--display);color:#142018}
-  body.menu-open .menu-panel.languages-open{height:325px}
+  body.menu-open .menu-panel.languages-open{height:290px}
   body.menu-open.menu-closing .menu-panel.languages-open{height:0}
   .menu-close,.menu-globe,.language-options button{
     -webkit-tap-highlight-color:transparent;
@@ -744,12 +741,36 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
 }
 
 /* Keep complete Indonesian phrases together at both layout breakpoints. */
-html[lang="id"] .statement h2{font-size:clamp(28px,10.7vw,105px)}
+html[lang="id"] .statement h2{font-size:clamp(29.96px,11.449vw,112.35px)}
 html[lang="id"] .statement-phrase{white-space:nowrap}
 html[lang="id"] .statement-phrase > span{display:inline}
-html[lang="id"] .contact h2{min-width:0;font-size:clamp(28px,6.5vw,90px)}
+html[lang="id"] .contact h2{min-width:0;font-size:clamp(30.8px,7.15vw,99px)}
 html[lang="id"] .contact-title-line,
 html[lang="id"] .contact h2 em{white-space:nowrap}
 @media(max-width:800px){
-  html[lang="id"] .contact h2{font-size:clamp(28px,10vw,70px);line-height:.92}
+  html[lang="id"] .contact h2{font-size:clamp(30.8px,11vw,77px);line-height:.92}
+}
+
+/* Keep the separators legible in both languages. */
+.hero .hero-separator{
+  display:inline-block;
+  font-size:1.6em;
+  font-weight:800;
+  line-height:0;
+  vertical-align:-.06em;
+  letter-spacing:0;
+}
+  @keyframes menuCloseShrink{
+    from{
+      transform:scale(1);
+      opacity:1;
+    }
+    to{
+      transform:scale(0);
+      opacity:0;
+    }
+  }
+
+@media(prefers-reduced-motion:reduce){
+  body.menu-open.menu-closing .menu-close{animation:none}
 }

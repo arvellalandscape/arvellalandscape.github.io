@@ -303,7 +303,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const options = group.querySelector(".language-options");
   const translations = {
     "Arvella Landscape — Crafted Landscapes": "Arvella Landscape — Taman yang Dirancang Sepenuh Hati",
-    "About": "Tentang Kami",
+    "About": "Tentang kami",
     "Services": "Layanan",
     "Selected Work": "Karya Pilihan",
     "Work": "Karya",
@@ -315,7 +315,9 @@ document.addEventListener("DOMContentLoaded", () => {
     "Languages": "Bahasa",
     "Indonesian": "Indonesia",
     "English": "Inggris",
-    "LANDSCAPE DESIGN · BUILD · CARE": "DESAIN · PEMBUATAN · PERAWATAN TAMAN",
+    "LANDSCAPE DESIGN": "DESAIN",
+    "BUILD": "PEMBUATAN",
+    "CARE": "PERAWATAN TAMAN",
     "Spaces": "Ruang",
     "that feel": "yang terasa",
     "alive.": "hidup.",
