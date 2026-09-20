@@ -636,7 +636,7 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
     transition:height .35s ease;
   }
   body.menu-open .menu-panel{
-    height:415px;
+    height:270px;
     pointer-events:auto;
   }
   body.menu-open.menu-closing .menu-panel{
@@ -688,7 +688,7 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
   .menu-close span:last-child{transform:rotate(-45deg)}
   .menu-panel-links{
     position:absolute;
-    top:122px;
+    top:104px;
     left:4.5vw;
     right:4.5vw;
     display:flex;
@@ -731,9 +731,25 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
   .language-options-inner{overflow:hidden;display:flex;flex-direction:column;align-items:flex-start;gap:8px}
   .menu-language.is-open .language-options{grid-template-rows:1fr;opacity:1;margin-top:10px}
   .language-options button{border:0;background:transparent;padding:0;font:500 12px/1.2 var(--display);color:#142018}
-  html[lang="id"] .statement h2{font-size:13vw;line-height:.92}
-  html[lang="id"] .statement h2 span:nth-child(3),
-  html[lang="id"] .statement h2 span:nth-child(4){display:inline}
-  html[lang="id"] .contact h2{font-size:12vw;line-height:.92}
-  html[lang="id"] .contact h2 em{white-space:nowrap}
+  body.menu-open .menu-panel.languages-open{height:325px}
+  body.menu-open.menu-closing .menu-panel.languages-open{height:0}
+  .menu-close,.menu-globe,.language-options button{
+    -webkit-tap-highlight-color:transparent;
+    touch-action:manipulation;
+  }
+  .menu-close:focus:not(:focus-visible),
+  .menu-globe:focus:not(:focus-visible),
+  .language-options button:focus:not(:focus-visible){outline:none}
+
+}
+
+/* Keep complete Indonesian phrases together at both layout breakpoints. */
+html[lang="id"] .statement h2{font-size:clamp(28px,10.7vw,105px)}
+html[lang="id"] .statement-phrase{white-space:nowrap}
+html[lang="id"] .statement-phrase > span{display:inline}
+html[lang="id"] .contact h2{min-width:0;font-size:clamp(28px,6.5vw,90px)}
+html[lang="id"] .contact-title-line,
+html[lang="id"] .contact h2 em{white-space:nowrap}
+@media(max-width:800px){
+  html[lang="id"] .contact h2{font-size:clamp(28px,10vw,70px);line-height:.92}
 }

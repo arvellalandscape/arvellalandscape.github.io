@@ -353,8 +353,8 @@ document.addEventListener("DOMContentLoaded", () => {
     "look good.": "indah.",
     "They endure.": "Tetap lestari.",
     "04 / START A PROJECT": "04 / MULAI PROYEK",
-    "Let's make": "Mari ciptakan",
-    "something living.": "ruang hidup.",
+    "Let's make": "Mari Ciptakan",
+    "something living.": "Ruang hidup",
     "Tell us about your space, your idea, or simply what isn't working yet.": "Ceritakan ruang Anda, ide Anda, atau hal yang ingin Anda perbaiki."
   };
   const textNodes = [];
