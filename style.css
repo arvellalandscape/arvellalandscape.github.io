@@ -209,7 +209,7 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
 .footer-links{gap:28px;font-size:17px}
 }
 @media screen and (min-width: 801px){
-  .project-large .project-img{margin-top:100px}
+  .project-large .project-img{margin-top:130px}
 
   .desktop-menu,
   .nav-cta{display:none}
