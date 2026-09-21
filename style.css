@@ -158,6 +158,8 @@ a{color:inherit;text-decoration:none}
 .project-img{height:430px;overflow:hidden;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
 .project-large .project-img{height:700px}
 .project:hover .project-img{transform:scale(.985)}
+.project-large:hover .project-img{transform:none}
+.project-large .project-img{transition:none}
 .img-one{background-image:url("assets/images/private-residence.avif?v=1")}
 .img-two{background-image:url("assets/images/project-02.svg")}
 .img-three{background-image:url("assets/images/project-03.svg")}
