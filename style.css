@@ -98,9 +98,13 @@ a{color:inherit;text-decoration:none}
   z-index:-1;
   pointer-events:none;
 }
-/* Mobile only: retain 20% of the original text shading. */
+/* Desktop photos end near the top of the service titles. */
+@media(min-width:801px){
+  .service-card-image{height:55%}
+}
+/* Mobile only: slightly stronger shading behind the copy. */
 @media(max-width:800px){
-  .service-card-copy::before{opacity:.2}
+  .service-card-copy::before{opacity:.35}
 }
 .work{padding-bottom:160px}
 .work-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:55px}
