@@ -217,7 +217,7 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
   }
 
   body.menu-open .menu-panel{
-    height:clamp(335px,34vw,380px);
+    height:clamp(270px,28vw,315px);
     pointer-events:auto;
   }
 
@@ -327,7 +327,7 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
 
   .menu-panel-links{
     position:absolute;
-    top:122px;
+    top:108px;
     left:4.5vw;
     right:4.5vw;
     display:flex;
@@ -466,7 +466,7 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
   }
 
   body.menu-open .menu-panel.languages-open{
-    height:calc(clamp(335px,34vw,380px) + 45px);
+    height:calc(clamp(270px,28vw,315px) + 45px);
   }
 
   body.menu-open.menu-closing .menu-panel.languages-open{height:0}
@@ -682,7 +682,7 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
     transition:height .35s ease;
   }
   body.menu-open .menu-panel{
-    height:226px;
+    height:188px;
     pointer-events:auto;
   }
   body.menu-open.menu-closing .menu-panel{
@@ -739,7 +739,7 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
   .menu-close span:last-child{transform:rotate(-45deg)}
   .menu-panel-links{
     position:absolute;
-    top:86px;
+    top:82px;
     left:4.5vw;
     right:4.5vw;
     display:flex;
@@ -782,7 +782,7 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
   .language-options-inner{overflow:hidden;display:flex;flex-direction:column;align-items:flex-start;gap:8px}
   .menu-language.is-open .language-options{grid-template-rows:1fr;opacity:1;margin-top:10px}
   .language-options button{border:0;background:transparent;padding:0;font:500 12px/1.2 var(--display);color:#142018}
-  body.menu-open .menu-panel.languages-open{height:270px}
+  body.menu-open .menu-panel.languages-open{height:232px}
   body.menu-open.menu-closing .menu-panel.languages-open{height:0}
   .menu-close,.menu-globe,.language-options button{
     -webkit-tap-highlight-color:transparent;
