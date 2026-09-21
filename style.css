@@ -66,11 +66,11 @@ a{color:inherit;text-decoration:none}
 .service-card p{font-size:13px;line-height:1.7;max-width:300px;color:#b9c0b9;margin-top:35px}
 .service-arrow{position:absolute;right:32px;top:32px;font-size:22px}
 .service-card.featured{background:#314638}
-.service-card.service-card-care{
+.service-card.service-card-photo{
   background:#314638;
   isolation:isolate;
 }
-.service-care-image{
+.service-card-image{
   position:absolute;
   top:0;
   left:0;
@@ -82,16 +82,22 @@ a{color:inherit;text-decoration:none}
   z-index:0;
   pointer-events:none;
 }
-.service-card-care::before{
+.service-card-photo > :not(.service-card-image){
+  z-index:2;
+}
+.service-card-copy{
+  position:relative;
+  isolation:isolate;
+  margin-top:auto;
+}
+/* Shade follows the copy, keeping the upper photograph unobscured. */
+.service-card-copy::before{
   content:"";
   position:absolute;
-  inset:0;
-  background:linear-gradient(180deg,rgba(49,70,56,.30) 0%,rgba(49,70,56,.45) 25%,rgba(49,70,56,.85) 45%,#314638 62%);
-  z-index:1;
+  inset:-35px -35px -35px;
+  background:linear-gradient(180deg,rgba(49,70,56,0) 0px,rgba(49,70,56,.96) 55px,#314638 115px);
+  z-index:-1;
   pointer-events:none;
-}
-.service-card-care > :not(.service-care-image){
-  z-index:2;
 }
 .work{padding-bottom:160px}
 .work-head{display:flex;justify-content:space-between;align-items:end;margin-bottom:55px}
