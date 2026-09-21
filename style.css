@@ -174,7 +174,7 @@ a{color:inherit;text-decoration:none}
 .statement h2 em{display:block}
 .contact{padding-bottom:110px}
 .contact-main{display:grid;grid-template-columns:1.3fr .7fr;gap:10%;align-items:end}
-.contact h2{font:600 clamp(55px,8vw,120px)/.88 var(--display);letter-spacing:-.065em}
+.contact h2{font:600 clamp(60px,8.5vw,126px)/.88 var(--display);letter-spacing:-.065em}
 .contact-main>div p{font-size:14px;line-height:1.7;color:var(--muted);max-width:310px;margin-bottom:35px}
 .contact-button{display:flex;justify-content:space-between;gap:50px;width:100%;max-width:400px;border-bottom:1px solid var(--ink);padding-bottom:13px;font-size:12px}
 footer{padding:30px 4.5vw;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr 1fr;align-items:center}
@@ -540,7 +540,7 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
   .service-card p{font-size:16px;line-height:1.7}
   .statement h2{font-size:105px}
   .statement .eyebrow{font-size:16.5px;font-weight:800;letter-spacing:.18em}
-  .contact h2{font-size:105px}
+  .contact h2{font-size:112px}
 }
 /* NAVBAR DROP-IN ANIMATION */
 
@@ -803,11 +803,11 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
 html[lang="id"] .statement h2{font-size:clamp(29.96px,11.449vw,112.35px)}
 html[lang="id"] .statement-phrase{white-space:nowrap}
 html[lang="id"] .statement-phrase > span{display:inline}
-html[lang="id"] .contact h2{min-width:0;font-size:clamp(36.96px,8.58vw,118.8px)}
+html[lang="id"] .contact h2{min-width:0;font-size:clamp(40px,9vw,124px)}
 html[lang="id"] .contact-title-line,
 html[lang="id"] .contact h2 em{white-space:nowrap}
 @media(max-width:800px){
-  html[lang="id"] .contact h2{font-size:clamp(36.96px,13.2vw,92.4px);line-height:.92}
+  html[lang="id"] .contact h2{font-size:clamp(40px,13.8vw,98px);line-height:.92}
 }
 
 /* Keep the separators legible in both languages. */
