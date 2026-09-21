@@ -158,7 +158,7 @@ a{color:inherit;text-decoration:none}
 .project-img{height:430px;overflow:hidden;transition:transform .7s cubic-bezier(.2,.7,.2,1)}
 .project-large .project-img{height:700px}
 .project:hover .project-img{transform:scale(.985)}
-.img-one{background-image:url("assets/images/private-residence.jpg")}
+.img-one{background-image:url("assets/images/private-residence.avif?v=1")}
 .img-two{background-image:url("assets/images/project-02.svg")}
 .img-three{background-image:url("assets/images/project-03.svg")}
 .project-info{display:flex;justify-content:space-between;padding-top:15px;border-top:1px solid var(--line);margin-top:12px}
