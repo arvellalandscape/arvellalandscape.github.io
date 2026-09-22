@@ -212,7 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
   const DOUBLE_PRESS_WINDOW = 2500;
 
-  document.querySelectorAll("#services .service-card").forEach((card) => {
+  document.querySelectorAll("#services .service-card:not([href])").forEach((card) => {
     let popTimer = null;
     let doublePressTimer = null;
     let lastPressTime = 0;
@@ -445,4 +445,25 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   const close = panel.querySelector(".menu-close");
   if (close) close.addEventListener("click", () => setOpen(false));
+});
+
+// Linked services: one activation, raised feedback, then navigation after 500 ms.
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll("#services a.service-card[href]").forEach((card) => {
+    let navigationTimer = null;
+    card.addEventListener("click", (event) => {
+      if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      event.preventDefault();
+      if (navigationTimer !== null) return;
+      card.classList.add("is-pressed");
+      navigationTimer = window.setTimeout(() => {
+        window.location.assign(card.href);
+      }, 500);
+    });
+    window.addEventListener("pageshow", () => {
+      window.clearTimeout(navigationTimer);
+      navigationTimer = null;
+      card.classList.remove("is-pressed");
+    });
+  });
 });
