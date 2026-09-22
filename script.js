@@ -472,6 +472,8 @@ document.addEventListener("DOMContentLoaded", () => {
       resetPress();
       card.classList.add("is-pressed");
       navigationTimer = window.setTimeout(() => {
+        // Mark this history entry so returning restores the services heading.
+        history.replaceState({ ...history.state, arvellaReturnToServices: true }, "");
         window.location.assign(card.href);
       }, 500);
     });
@@ -489,5 +491,34 @@ document.addEventListener("DOMContentLoaded", () => {
       navigationTimer = null;
       card.classList.remove("is-pressed");
     });
+  });
+});
+
+// Restore the existing homepage instead of opening a fresh index.html.
+window.addEventListener("pageshow", () => {
+  if (!history.state || !history.state.arvellaReturnToServices) return;
+  const section = document.querySelector("#services");
+  if (!section) return;
+  const state = { ...history.state };
+  delete state.arvellaReturnToServices;
+  history.replaceState(state, "");
+  const heading = section.querySelector(".section-label") || section;
+  heading.scrollIntoView({ behavior: "instant", block: "start" });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const back = document.querySelector(".design-back");
+  if (!back) return;
+  back.addEventListener("click", (event) => {
+    if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+    // Direct visits retain the ordinary link as a safe fallback.
+    if (!document.referrer || history.length < 2) return;
+    const source = new URL(document.referrer);
+    const home = new URL("index.html", window.location.href);
+    const root = new URL(".", home);
+    if (source.origin !== home.origin ||
+        (source.pathname !== home.pathname && source.pathname !== root.pathname)) return;
+    event.preventDefault();
+    history.back();
   });
 });
