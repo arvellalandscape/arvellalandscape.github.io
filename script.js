@@ -499,18 +499,21 @@ let designFrame = null;
 let designHiddenElements = [];
 let designOverflow = "";
 let homeTitle = "";
+let serviceReturnCard = null;
 let designScroll = { x: 0, y: 0 };
 // This document retains its own scroll while the detail view is open.
 if (document.querySelector("#services")) history.scrollRestoration = "manual";
 function openDesignView(url, push = true) {
   if (designFrame) return;
+  serviceReturnCard = Array.from(document.querySelectorAll("#services a.service-card")).find(card => card.href === url) || null;
+  const serviceTitle = url.includes("landscape-build.html") ? "Landscape Build" : url.includes("garden-care.html") ? "Garden Care" : "Landscape Design";
   designScroll = { x: window.scrollX, y: window.scrollY };
   homeTitle = document.title;
   designOverflow = document.documentElement.style.overflow;
   designHiddenElements = Array.from(document.body.children).filter(el => el.tagName !== "SCRIPT");
   designHiddenElements.forEach(el => { el.inert = true; });
   const frame = document.createElement("iframe");
-  frame.title = "Landscape Design";
+  frame.title = serviceTitle;
   frame.dataset.designView = "true";
   frame.style.cssText = "position:fixed;inset:0;width:100%;height:100%;border:0;z-index:2147483647;background:#f2f0e8";
   frame.src = url;
@@ -518,7 +521,7 @@ function openDesignView(url, push = true) {
   document.body.appendChild(frame);
   document.documentElement.style.overflow = "hidden";
   if (push) history.pushState({ ...history.state, arvellaDesignView: true, designURL: url }, "", url);
-  document.title = "Landscape Design — ARVELLA";
+  document.title = serviceTitle + " — ARVELLA";
   frame.focus({ preventScroll: true });
 }
 function closeDesignView() {
@@ -530,7 +533,7 @@ function closeDesignView() {
   window.scrollTo({ left: designScroll.x, top: designScroll.y, behavior: "instant" });
   designFrame.remove();
   designFrame = null;
-  const card = document.querySelector("#services a.service-card");
+  const card = serviceReturnCard;
   if (card) card.focus({ preventScroll: true });
 }
 window.addEventListener("popstate", (event) => {
