@@ -316,6 +316,12 @@ document.addEventListener("DOMContentLoaded", () => {
     resetDoublePress();
     card.classList.add("is-pressed");
 
+    // Let the raised feedback finish first, then restore the card
+    // before leaving the page so the previous page state is already clean.
+    window.setTimeout(() => {
+      card.classList.remove("is-pressed");
+    }, 350);
+
     window.setTimeout(() => {
       window.location.href = card.dataset.href;
     }, 500);
