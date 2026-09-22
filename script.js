@@ -499,8 +499,12 @@ let designFrame = null;
 let designHiddenElements = [];
 let designOverflow = "";
 let homeTitle = "";
+let designScroll = { x: 0, y: 0 };
+// This document retains its own scroll while the detail view is open.
+if (document.querySelector("#services")) history.scrollRestoration = "manual";
 function openDesignView(url, push = true) {
   if (designFrame) return;
+  designScroll = { x: window.scrollX, y: window.scrollY };
   homeTitle = document.title;
   designOverflow = document.documentElement.style.overflow;
   designHiddenElements = Array.from(document.body.children).filter(el => el.tagName !== "SCRIPT");
@@ -515,17 +519,17 @@ function openDesignView(url, push = true) {
   document.documentElement.style.overflow = "hidden";
   if (push) history.pushState({ ...history.state, arvellaDesignView: true, designURL: url }, "", url);
   document.title = "Landscape Design — ARVELLA";
-  frame.focus();
+  frame.focus({ preventScroll: true });
 }
 function closeDesignView() {
   if (!designFrame) return;
-  designFrame.remove();
-  designFrame = null;
   designHiddenElements.forEach(el => { el.inert = false; });
   document.documentElement.style.overflow = designOverflow;
   document.title = homeTitle;
-  const heading = document.querySelector("#services .section-label");
-  if (heading) heading.scrollIntoView({ behavior: "instant", block: "start" });
+  // Restore underneath the frame, before revealing the homepage.
+  window.scrollTo({ left: designScroll.x, top: designScroll.y, behavior: "instant" });
+  designFrame.remove();
+  designFrame = null;
   const card = document.querySelector("#services a.service-card");
   if (card) card.focus({ preventScroll: true });
 }
