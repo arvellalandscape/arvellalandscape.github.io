@@ -316,20 +316,13 @@ document.addEventListener("DOMContentLoaded", () => {
     resetDoublePress();
     card.classList.add("is-pressed");
 
-    // Return the card to its resting position before navigation.
     window.setTimeout(() => {
       card.classList.remove("is-pressed");
-    }, 200);
-
-    window.setTimeout(() => {
-      // Force the browser to commit the resting state before it snapshots
-      // this page for back/forward navigation.
       card.style.transition = "none";
-      card.classList.remove("is-pressed");
       void card.offsetWidth;
       card.style.transition = "";
       window.location.href = card.dataset.href;
-    }, 500);
+    }, 700);
   };
 
   const registerPress = () => {
