@@ -447,20 +447,44 @@ document.addEventListener("DOMContentLoaded", () => {
   if (close) close.addEventListener("click", () => setOpen(false));
 });
 
-// Linked services: one activation, raised feedback, then navigation after 500 ms.
+// Linked services: two presses within 2.5 seconds, then navigate after 500 ms.
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll("#services a.service-card[href]").forEach((card) => {
     let navigationTimer = null;
+    let pressTimer = null;
+    let firstPressTime = null;
+    const resetPress = () => {
+      window.clearTimeout(pressTimer);
+      pressTimer = null;
+      firstPressTime = null;
+    };
     card.addEventListener("click", (event) => {
       if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
       event.preventDefault();
       if (navigationTimer !== null) return;
+      const now = Date.now();
+      if (firstPressTime === null || now - firstPressTime >= 2500) {
+        resetPress();
+        firstPressTime = now;
+        pressTimer = window.setTimeout(resetPress, 2500);
+        return;
+      }
+      resetPress();
       card.classList.add("is-pressed");
       navigationTimer = window.setTimeout(() => {
         window.location.assign(card.href);
       }, 500);
     });
+    card.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" && event.repeat) event.preventDefault();
+    });
+    card.addEventListener("pointercancel", resetPress);
+    window.addEventListener("blur", resetPress);
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) resetPress();
+    });
     window.addEventListener("pageshow", () => {
+      resetPress();
       window.clearTimeout(navigationTimer);
       navigationTimer = null;
       card.classList.remove("is-pressed");
