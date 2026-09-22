@@ -472,9 +472,9 @@ document.addEventListener("DOMContentLoaded", () => {
       resetPress();
       card.classList.add("is-pressed");
       navigationTimer = window.setTimeout(() => {
-        // Mark this history entry so returning restores the services heading.
-        history.replaceState({ ...history.state, arvellaReturnToServices: true }, "");
-        window.location.assign(card.href);
+        openDesignView(card.href);
+        navigationTimer = null;
+        card.classList.remove("is-pressed");
       }, 500);
     });
     card.addEventListener("keydown", (event) => {
@@ -494,31 +494,59 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// Restore the existing homepage instead of opening a fresh index.html.
-window.addEventListener("pageshow", () => {
-  if (!history.state || !history.state.arvellaReturnToServices) return;
-  const section = document.querySelector("#services");
-  if (!section) return;
-  const state = { ...history.state };
-  delete state.arvellaReturnToServices;
-  history.replaceState(state, "");
-  const heading = section.querySelector(".section-label") || section;
-  heading.scrollIntoView({ behavior: "instant", block: "start" });
+// Keep the homepage document alive so Services never needs to reload it.
+let designFrame = null;
+let designHiddenElements = [];
+let designOverflow = "";
+let homeTitle = "";
+function openDesignView(url, push = true) {
+  if (designFrame) return;
+  homeTitle = document.title;
+  designOverflow = document.documentElement.style.overflow;
+  designHiddenElements = Array.from(document.body.children).filter(el => el.tagName !== "SCRIPT");
+  designHiddenElements.forEach(el => { el.inert = true; });
+  const frame = document.createElement("iframe");
+  frame.title = "Landscape Design";
+  frame.dataset.designView = "true";
+  frame.style.cssText = "position:fixed;inset:0;width:100%;height:100%;border:0;z-index:2147483647;background:#f2f0e8";
+  frame.src = url;
+  designFrame = frame;
+  document.body.appendChild(frame);
+  document.documentElement.style.overflow = "hidden";
+  if (push) history.pushState({ ...history.state, arvellaDesignView: true, designURL: url }, "", url);
+  document.title = "Landscape Design — ARVELLA";
+  frame.focus();
+}
+function closeDesignView() {
+  if (!designFrame) return;
+  designFrame.remove();
+  designFrame = null;
+  designHiddenElements.forEach(el => { el.inert = false; });
+  document.documentElement.style.overflow = designOverflow;
+  document.title = homeTitle;
+  const heading = document.querySelector("#services .section-label");
+  if (heading) heading.scrollIntoView({ behavior: "instant", block: "start" });
+  const card = document.querySelector("#services a.service-card");
+  if (card) card.focus({ preventScroll: true });
+}
+window.addEventListener("popstate", (event) => {
+  if (!document.querySelector("#services")) return;
+  if (event.state && event.state.arvellaDesignView) {
+    // Forward restores the detail view without creating another history entry.
+    openDesignView(event.state.designURL, false);
+  } else {
+    closeDesignView();
+  }
 });
-
 document.addEventListener("DOMContentLoaded", () => {
+  if (!window.frameElement || !window.frameElement.dataset.designView) return;
+  document.querySelectorAll("a[href]").forEach(link => {
+    link.target = "_top";
+  });
   const back = document.querySelector(".design-back");
-  if (!back) return;
-  back.addEventListener("click", (event) => {
+  if (back) back.addEventListener("click", event => {
     if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
-    // Direct visits retain the ordinary link as a safe fallback.
-    if (!document.referrer || history.length < 2) return;
-    const source = new URL(document.referrer);
-    const home = new URL("index.html", window.location.href);
-    const root = new URL(".", home);
-    if (source.origin !== home.origin ||
-        (source.pathname !== home.pathname && source.pathname !== root.pathname)) return;
     event.preventDefault();
-    history.back();
+    window.parent.history.back();
   });
 });
