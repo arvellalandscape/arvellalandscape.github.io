@@ -100,6 +100,18 @@ document.addEventListener("DOMContentLoaded", () => {
     if (menuClose) {
       menuClose.addEventListener("click", closeDesktopMenu);
     }
+
+    if (menuPanel) {
+      menuPanel.querySelectorAll('a[href^="#"]').forEach((link) => {
+        link.addEventListener("click", () => {
+          window.clearTimeout(closeFallbackTimer);
+          closeFinalized = true;
+          document.body.classList.remove("menu-open", "menu-closing", "nav-return-pending");
+          menuToggle.setAttribute("aria-expanded", "false");
+          if (menuPanel) menuPanel.setAttribute("aria-hidden", "true");
+        });
+      });
+    }
   }
 
   // Philosophy one-time reveal
@@ -311,6 +323,11 @@ document.addEventListener("DOMContentLoaded", () => {
     "Start a project": "Mulai proyek",
     "GOAL & MISSION": "TUJUAN & MISI",
     "SERVICE AREA": "AREA LAYANAN",
+    "PRIMARY COVERAGE": "CAKUPAN UTAMA",
+    "Jabodetabek,": "Jabodetabek,",
+    "by default.": "sebagai utama.",
+    "We primarily serve Jakarta, Bogor, Depok, Tangerang, and Bekasi.": "Kami berfokus melayani Jakarta, Bogor, Depok, Tangerang, dan Bekasi.",
+    "Projects outside Jabodetabek are considered selectively for larger-scale work with sufficient project volume.": "Proyek di luar Jabodetabek dapat dipertimbangkan secara selektif untuk pekerjaan berskala besar dengan volume proyek yang memadai.",
     "PORTFOLIO": "PORTOFOLIO",
     "Languages": "Bahasa",
     "Indonesian": "Indonesia",
