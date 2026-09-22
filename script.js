@@ -294,33 +294,66 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// Landscape Design: single press, pop, then navigate after 0.5 seconds.
+// Landscape Design: preserve the existing two-press interaction.
 document.addEventListener("DOMContentLoaded", () => {
   const card = document.querySelector('#services .service-card[data-href="landscape-design.html"]');
   if (!card) return;
 
+  const DOUBLE_PRESS_WINDOW = 2500;
+  let lastPressTime = 0;
+  let doublePressTimer = null;
   let navigating = false;
-  const go = () => {
+
+  const resetDoublePress = () => {
+    window.clearTimeout(doublePressTimer);
+    doublePressTimer = null;
+    lastPressTime = 0;
+  };
+
+  const activate = () => {
     if (navigating) return;
     navigating = true;
+    resetDoublePress();
     card.classList.add("is-pressed");
+
     window.setTimeout(() => {
       window.location.href = card.dataset.href;
     }, 500);
   };
 
+  const registerPress = () => {
+    const now = Date.now();
+
+    if (lastPressTime && now - lastPressTime <= DOUBLE_PRESS_WINDOW) {
+      activate();
+      return;
+    }
+
+    lastPressTime = now;
+    window.clearTimeout(doublePressTimer);
+    doublePressTimer = window.setTimeout(resetDoublePress, DOUBLE_PRESS_WINDOW);
+  };
+
   card.setAttribute("tabindex", "0");
-  card.setAttribute("role", "link");
+  card.setAttribute("role", "button");
 
   card.addEventListener("pointerup", (event) => {
     if (!event.isPrimary || event.button !== 0) return;
-    go();
+    registerPress();
   });
+
+  card.addEventListener("pointercancel", resetDoublePress);
 
   card.addEventListener("keydown", (event) => {
     if (event.key !== "Enter" && event.key !== " ") return;
     event.preventDefault();
-    if (!event.repeat) go();
+    if (!event.repeat) registerPress();
+  });
+
+  window.addEventListener("blur", resetDoublePress);
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) resetDoublePress();
   });
 });
 
