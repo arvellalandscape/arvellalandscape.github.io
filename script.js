@@ -355,6 +355,17 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("visibilitychange", () => {
     if (document.hidden) resetDoublePress();
   });
+
+  const clearPressedState = () => {
+    navigating = false;
+    resetDoublePress();
+    card.classList.remove("is-pressed");
+  };
+
+  // Browsers often restore the previous page from the back-forward cache.
+  // Clear the raised state whenever this page becomes visible again.
+  window.addEventListener("pageshow", clearPressedState);
+  window.addEventListener("focus", clearPressedState);
 });
 
 // Translate existing text nodes so reveal animations and interactive elements survive.
