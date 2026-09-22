@@ -212,7 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
   const DOUBLE_PRESS_WINDOW = 2500;
 
-  document.querySelectorAll("#services .service-card").forEach((card) => {
+  document.querySelectorAll("#services .service-card:not([data-href])").forEach((card) => {
     let popTimer = null;
     let doublePressTimer = null;
     let lastPressTime = 0;
@@ -291,6 +291,36 @@ document.addEventListener("DOMContentLoaded", () => {
         event.preventDefault();
       }
     });
+  });
+});
+
+// Landscape Design: single press, pop, then navigate after 0.5 seconds.
+document.addEventListener("DOMContentLoaded", () => {
+  const card = document.querySelector('#services .service-card[data-href="landscape-design.html"]');
+  if (!card) return;
+
+  let navigating = false;
+  const go = () => {
+    if (navigating) return;
+    navigating = true;
+    card.classList.add("is-pressed");
+    window.setTimeout(() => {
+      window.location.href = card.dataset.href;
+    }, 500);
+  };
+
+  card.setAttribute("tabindex", "0");
+  card.setAttribute("role", "link");
+
+  card.addEventListener("pointerup", (event) => {
+    if (!event.isPrimary || event.button !== 0) return;
+    go();
+  });
+
+  card.addEventListener("keydown", (event) => {
+    if (event.key !== "Enter" && event.key !== " ") return;
+    event.preventDefault();
+    if (!event.repeat) go();
   });
 });
 
