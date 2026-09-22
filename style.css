@@ -880,21 +880,3 @@ html[lang="id"] .contact h2 em{white-space:nowrap}
     transform:none;
   }
 }
-
-/* SERVICE AREA */
-.service-area{background:var(--cream)}
-.service-area-layout{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(320px,.75fr);gap:7vw;align-items:center}
-.service-area-map{width:100%;overflow:hidden}
-.service-area-map img{display:block;width:100%;height:auto;max-width:700px}
-.service-area-copy{max-width:500px}
-.service-area-kicker{font-size:10px;letter-spacing:.2em;font-weight:600;color:var(--muted);margin-bottom:22px}
-.service-area-copy h2{font:600 clamp(48px,6vw,92px)/.92 var(--display);letter-spacing:-.055em;margin-bottom:34px}
-.service-area-copy h2 em{font-family:var(--serif);font-weight:400}
-.service-area-lead{font-size:18px;line-height:1.55;margin-bottom:18px}
-.service-area-note{max-width:430px;color:var(--muted);font-size:14px;line-height:1.75;border-top:1px solid var(--line);padding-top:20px}
-@media(max-width:800px){
-  .service-area-layout{grid-template-columns:1fr;gap:42px}
-  .service-area-map img{max-width:none}
-  .service-area-copy h2{font-size:13vw}
-  .service-area-lead{font-size:16px}
-}
