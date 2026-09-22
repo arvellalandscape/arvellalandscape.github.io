@@ -212,7 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
   const DOUBLE_PRESS_WINDOW = 2500;
 
-  document.querySelectorAll("#services .service-card:not([data-href])").forEach((card) => {
+  document.querySelectorAll("#services .service-card").forEach((card) => {
     let popTimer = null;
     let doublePressTimer = null;
     let lastPressTime = 0;
@@ -292,84 +292,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   });
-});
-
-// Landscape Design: preserve the existing two-press interaction.
-document.addEventListener("DOMContentLoaded", () => {
-  const card = document.querySelector('#services .service-card[data-href="landscape-design.html"]');
-  if (!card) return;
-
-  const DOUBLE_PRESS_WINDOW = 2500;
-  let lastPressTime = 0;
-  let doublePressTimer = null;
-  let navigating = false;
-
-  const resetDoublePress = () => {
-    window.clearTimeout(doublePressTimer);
-    doublePressTimer = null;
-    lastPressTime = 0;
-  };
-
-  const activate = () => {
-    if (navigating) return;
-    navigating = true;
-    resetDoublePress();
-    card.classList.add("is-pressed");
-
-    window.setTimeout(() => {
-      card.classList.remove("is-pressed");
-      card.style.transition = "none";
-      void card.offsetWidth;
-      card.style.transition = "";
-      window.location.href = card.dataset.href;
-    }, 700);
-  };
-
-  const registerPress = () => {
-    const now = Date.now();
-
-    if (lastPressTime && now - lastPressTime <= DOUBLE_PRESS_WINDOW) {
-      activate();
-      return;
-    }
-
-    lastPressTime = now;
-    window.clearTimeout(doublePressTimer);
-    doublePressTimer = window.setTimeout(resetDoublePress, DOUBLE_PRESS_WINDOW);
-  };
-
-  card.setAttribute("tabindex", "0");
-  card.setAttribute("role", "button");
-
-  card.addEventListener("pointerup", (event) => {
-    if (!event.isPrimary || event.button !== 0) return;
-    registerPress();
-  });
-
-  card.addEventListener("pointercancel", resetDoublePress);
-
-  card.addEventListener("keydown", (event) => {
-    if (event.key !== "Enter" && event.key !== " ") return;
-    event.preventDefault();
-    if (!event.repeat) registerPress();
-  });
-
-  window.addEventListener("blur", resetDoublePress);
-
-  document.addEventListener("visibilitychange", () => {
-    if (document.hidden) resetDoublePress();
-  });
-
-  const clearPressedState = () => {
-    navigating = false;
-    resetDoublePress();
-    card.classList.remove("is-pressed");
-  };
-
-  // Browsers often restore the previous page from the back-forward cache.
-  // Clear the raised state whenever this page becomes visible again.
-  window.addEventListener("pageshow", clearPressedState);
-  window.addEventListener("focus", clearPressedState);
 });
 
 // Translate existing text nodes so reveal animations and interactive elements survive.
