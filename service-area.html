@@ -21,7 +21,7 @@
     .back{font-size:13px;border-bottom:1px solid var(--ink);padding-bottom:5px}
     .label{font-size:10px;letter-spacing:.22em;font-weight:600;color:var(--muted);margin-bottom:28px}
     .hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);gap:7vw;align-items:start}
-    .map img{display:block;width:100%;height:auto}
+    .map img,.service-map-svg{display:block;width:100%;height:auto}
     .copy{padding-top:4px}
     h1{font:600 clamp(58px,7vw,112px)/.9 var(--display);letter-spacing:-.06em;margin-bottom:34px}
     h1 em{display:block;font-family:var(--serif);font-weight:400}
@@ -50,9 +50,117 @@
     <div class="label">SERVICE AREA</div>
 
     <section class="hero">
-      <div class="map">
-        <img src="assets/images/service-area-map.jpg?v=1" alt="Arvella Landscape service area map covering Tangerang, Jakarta, Depok, Bogor, Bekasi, and Bekasi Regency">
-      </div>
+      <div class="map"><svg class="service-map-svg" viewBox="0 0 1448 1086" role="img" aria-labelledby="serviceMapTitle serviceMapDesc">
+  <title id="serviceMapTitle">Arvella Landscape service area map</title>
+  <desc id="serviceMapDesc">Service coverage across Tangerang, Jakarta, Depok, Bogor, Bekasi, and Bekasi Regency.</desc>
+  <defs>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#53baf0"/>
+      <stop offset="1" stop-color="#bfeeff"/>
+    </linearGradient>
+    <linearGradient id="pin" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#39a944"/>
+      <stop offset="1" stop-color="#08711e"/>
+    </linearGradient>
+    <filter id="pinShadow" x="-40%" y="-30%" width="180%" height="200%">
+      <feDropShadow dx="0" dy="5" stdDeviation="6" flood-color="#1b5827" flood-opacity=".28"/>
+    </filter>
+  </defs>
+
+  <rect width="1448" height="1086" fill="#fff"/>
+
+  <!-- Jakarta Bay / northern coastline -->
+  <path d="M0 0H1448V96
+           C1375 105 1340 95 1290 117
+           C1225 145 1185 127 1125 149
+           C1056 175 989 144 927 173
+           C868 201 817 175 748 199
+           C682 222 631 188 566 207
+           C493 229 440 193 377 214
+           C303 239 245 204 181 222
+           C112 241 72 218 0 247Z"
+        fill="url(#sea)" opacity=".98"/>
+
+  <!-- light water channels -->
+  <g fill="none" stroke="#58c9ff" stroke-width="4" opacity=".8">
+    <path d="M270 82 C250 190 242 280 264 374 C274 416 260 467 235 505"/>
+    <path d="M1150 120 C1138 243 1148 342 1119 445 C1095 529 1108 632 1161 737"/>
+    <path d="M392 605 C368 704 380 778 436 846 C465 881 470 934 458 1000"/>
+  </g>
+
+  <!-- secondary road network -->
+  <g fill="none" stroke="#d7deed" stroke-width="2.5">
+    <path d="M38 310 C180 258 337 270 463 318 S735 352 887 315 S1150 280 1404 322"/>
+    <path d="M54 410 C205 358 321 391 473 425 S742 475 918 432 S1184 393 1420 440"/>
+    <path d="M91 536 C253 474 417 520 576 557 S857 593 1043 545 S1250 511 1425 569"/>
+    <path d="M128 685 C288 613 460 652 617 689 S874 731 1030 688 S1245 643 1396 710"/>
+    <path d="M186 843 C355 769 502 797 671 843 S980 882 1251 836"/>
+    <path d="M222 184 C266 339 321 455 346 628 S391 864 455 1031"/>
+    <path d="M446 164 C461 333 492 464 520 606 S568 841 610 1038"/>
+    <path d="M670 173 C681 347 700 475 733 633 S770 859 806 1027"/>
+    <path d="M905 165 C921 346 919 497 949 657 S985 845 1034 1012"/>
+    <path d="M1137 182 C1124 335 1140 488 1176 635 S1226 820 1284 973"/>
+  </g>
+
+  <!-- primary roads -->
+  <g fill="none" stroke="#6d7894" stroke-width="5" opacity=".95">
+    <path d="M0 290 C143 326 241 352 373 343 C512 334 589 284 741 278 C900 273 1005 302 1118 358 C1240 419 1330 447 1448 461"/>
+    <path d="M144 36 C193 141 233 222 315 286 C414 363 498 405 606 468 C714 533 831 596 955 680 C1082 768 1191 839 1370 932"/>
+    <path d="M318 130 C376 242 441 333 541 402 C642 470 725 519 808 602 C901 695 994 779 1106 849"/>
+    <path d="M797 172 C844 279 887 385 900 500 C915 625 893 766 847 947"/>
+    <path d="M535 229 C525 387 544 516 582 640 C622 772 658 878 704 1020"/>
+  </g>
+
+  <!-- municipal boundaries -->
+  <g fill="none" stroke="#202020" stroke-width="2.5" stroke-dasharray="8 8" opacity=".92">
+    <path d="M42 248 C106 204 171 198 220 231 C255 257 274 321 324 349 C369 374 402 407 410 454"/>
+    <path d="M402 193 C456 210 505 245 513 291 C521 338 498 371 523 417 C552 468 575 500 567 554"/>
+    <path d="M934 208 C964 236 976 276 962 311 C946 350 911 377 903 424 C895 470 913 505 945 542"/>
+    <path d="M1015 202 C1057 240 1090 285 1082 331 C1071 386 1039 421 1053 474 C1066 524 1094 561 1134 597"/>
+    <path d="M84 570 C134 527 183 519 229 547 C270 571 281 617 323 643 C358 665 395 676 431 674"/>
+  </g>
+
+  <!-- Arvella connection curves -->
+  <g fill="none" stroke="#087b24" stroke-width="6" stroke-linecap="round">
+    <path d="M1007 337 C814 181 588 170 286 191"/>
+    <path d="M1007 337 C866 254 766 253 663 304"/>
+    <path d="M1007 337 C841 408 721 527 618 670"/>
+    <path d="M1007 337 C931 554 836 757 665 891"/>
+    <path d="M1007 337 C1185 317 1313 389 1371 553"/>
+  </g>
+
+  <!-- pin symbol -->
+  <g id="pin-shape">
+    <path d="M0 -54 C-32 -54 -56 -31 -56 1 C-56 45 0 100 0 100 C0 100 56 45 56 1 C56 -31 32 -54 0 -54Z" fill="url(#pin)" filter="url(#pinShadow)"/>
+    <circle cx="0" cy="0" r="20" fill="#fff"/>
+  </g>
+
+  <g transform="translate(286 191) scale(.78)"><use href="#pin-shape"/></g>
+  <g transform="translate(663 304) scale(.78)"><use href="#pin-shape"/></g>
+  <g transform="translate(618 670) scale(.78)"><use href="#pin-shape"/></g>
+  <g transform="translate(665 891) scale(.78)"><use href="#pin-shape"/></g>
+  <g transform="translate(1371 553) scale(.78)"><use href="#pin-shape"/></g>
+
+  <!-- Bekasi / Arvella main pin -->
+  <g transform="translate(1007 337)">
+    <path d="M0 -65 C-39 -65 -68 -37 -68 2 C-68 55 0 121 0 121 C0 121 68 55 68 2 C68 -37 39 -65 0 -65Z" fill="url(#pin)" filter="url(#pinShadow)"/>
+    <circle cx="0" cy="0" r="31" fill="#126f2a"/>
+    <circle cx="7" cy="5" r="12" fill="#efa72d"/>
+    <ellipse cx="25" cy="0" rx="10" ry="15" fill="#f8d372" transform="rotate(35 25 0)"/>
+    <path d="M-5 -20 C13 -44 26 -47 38 -57 C34 -37 20 -26 1 -12" fill="none" stroke="#e7a127" stroke-width="3"/>
+  </g>
+
+  <!-- Labels -->
+  <g fill="#050505" font-family="Arial, Helvetica, sans-serif" font-weight="700">
+    <text x="164" y="302" font-size="54">Tangerang</text>
+    <text x="610" y="402" font-size="48">Jakarta</text>
+    <text x="935" y="458" font-size="54">Bekasi</text>
+    <text x="548" y="777" font-size="51">Depok</text>
+    <text x="571" y="1010" font-size="53">Bogor</text>
+    <text x="1284" y="652" font-size="43">Bekasi</text>
+    <text x="1268" y="701" font-size="43">Regency</text>
+  </g>
+</svg></div>
 
       <div class="copy">
         <p class="label">PRIMARY COVERAGE</p>
