@@ -21,7 +21,7 @@
     .back{font-size:13px;border-bottom:1px solid var(--ink);padding-bottom:5px}
     .label{font-size:10px;letter-spacing:.22em;font-weight:600;color:var(--muted);margin-bottom:28px}
     .hero{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);gap:7vw;align-items:start}
-    .map img{display:block;width:min(100%,700px);height:auto;margin:0 auto}
+    .map img{display:block;width:min(100%,600px);height:auto;margin:0 auto}
     .copy{padding-top:4px}
     h1{font:600 clamp(58px,7vw,112px)/.9 var(--display);letter-spacing:-.06em;margin-bottom:34px}
     h1 em{display:block;font-family:var(--serif);font-weight:400}
@@ -51,7 +51,7 @@
 
     <section class="hero">
       <div class="map">
-        <img id="service-area-map" src="assets/images/service-area-map-original.webp?v=2" alt="Arvella Landscape service area map covering Tangerang, Jakarta, Depok, Bogor, Bekasi, and Bekasi Regency" width="1448" height="1086">
+        <img id="service-area-map" alt="Arvella Landscape service area map covering Tangerang, Jakarta, Depok, Bogor, Bekasi, and Bekasi Regency" width="600" height="450">
       </div>
 
       <div class="copy">
@@ -73,5 +73,29 @@
       </div>
     </section>
   </main>
+
+  <script>
+    (async () => {
+      const img = document.getElementById("service-area-map");
+      if (!img) return;
+
+      const paths = Array.from({ length: 10 }, (_, i) =>
+        `assets/data/service-area-${String(i).padStart(2, "0")}.txt`
+      );
+
+      try {
+        const parts = await Promise.all(
+          paths.map(async (path) => {
+            const response = await fetch(path + "?v=1", { cache: "no-store" });
+            if (!response.ok) throw new Error(`Unable to load ${path}`);
+            return (await response.text()).trim();
+          })
+        );
+        img.src = "data:image/jpeg;base64," + parts.join("");
+      } catch (error) {
+        console.error("Service Area map failed to load:", error);
+      }
+    })();
+  </script>
 </body>
 </html>
