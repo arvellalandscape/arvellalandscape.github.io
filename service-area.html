@@ -21,7 +21,8 @@
     .back{font-size:13px;border-bottom:1px solid var(--ink);padding-bottom:5px}
     .label{font-size:10px;letter-spacing:.22em;font-weight:600;color:var(--muted);margin-bottom:28px}
     .hero{display:flex;flex-direction:column;align-items:center;gap:42px;width:100%;margin:0 auto}
-    .map{width:100%}\n    .map img{display:block;width:min(100%,880px);height:auto;margin:0 auto}
+    .map{width:min(100%,1000px);margin:0 auto;display:flex;justify-content:center}
+    .map img{display:block;width:100%;height:auto;margin:0 auto}
     .copy{width:min(100%,1000px);margin:0 auto;padding-top:4px;align-self:center}
     h1{font:600 clamp(58px,7vw,112px)/.9 var(--display);letter-spacing:-.06em;margin-bottom:34px}
     h1 em{display:block;font-family:var(--serif);font-weight:400}
@@ -30,7 +31,11 @@
     .coverage{margin-top:70px;border-top:1px solid var(--line);padding-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:40px}
     .coverage h2{font:600 24px var(--display);margin-bottom:12px}
     .coverage p{color:var(--muted);line-height:1.7;font-size:14px;max-width:480px}
-    @media(min-width:801px){\n      .map{width:min(100%,1000px)}\n      .map img{width:100%;max-width:none}\n    }\n    @media(max-width:800px){
+    @media(min-width:801px){
+      .map{width:min(100%,1000px)}
+      .map img{width:100%;max-width:none}
+    }
+    @media(max-width:800px){
       .page{padding:26px 6vw 70px}
       .top{margin-bottom:60px}
       .hero{grid-template-columns:1fr;gap:42px}
