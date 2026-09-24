@@ -51,7 +51,7 @@
 
     <section class="hero">
       <div class="map">
-        <img id="service-area-map" alt="Arvella Landscape service area map covering Tangerang, Jakarta, Depok, Bogor, Bekasi, and Bekasi Regency" width="600" height="450">
+        <img id="service-area-map" src="assets/images/service-area-map-original.webp?v=2" alt="Arvella Landscape service area map covering Tangerang, Jakarta, Depok, Bogor, Bekasi, and Bekasi Regency" width="1448" height="1086">
       </div>
 
       <div class="copy">
@@ -73,30 +73,5 @@
       </div>
     </section>
   </main>
-  <script>
-    (async () => {
-      const image = document.getElementById("service-area-map");
-      const parts = [
-        "assets/images/service-area-avif/part-00.txt?v=1",
-        "assets/images/service-area-avif/part-01.txt?v=1",
-        "assets/images/service-area-avif/part-02.txt?v=1",
-        "assets/images/service-area-avif/part-03.txt?v=1",
-        "assets/images/service-area-avif/part-04.txt?v=1"
-      ];
-
-      try {
-        const chunks = await Promise.all(
-          parts.map(async (url) => {
-            const response = await fetch(url, { cache: "force-cache" });
-            if (!response.ok) throw new Error("Map asset failed to load");
-            return (await response.text()).trim();
-          })
-        );
-        image.src = "data:image/avif;base64," + chunks.join("");
-      } catch (error) {
-        console.error(error);
-      }
-    })();
-  </script>
 </body>
 </html>
