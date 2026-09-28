@@ -808,10 +808,20 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
 }
 
 /* Keep complete Indonesian phrases together at both layout breakpoints. */
-/* English statement text slightly larger; Indonesian sizing remains unchanged. */
-html:not([lang="id"]) .statement h2{font-size:clamp(60px,8.6vw,132px)}
+/* English statement text larger and stronger; Indonesian sizing remains unchanged. */
+html:not([lang="id"]) .statement h2{font-size:clamp(65px,9.2vw,140px)}
+html:not([lang="id"]) .statement .eyebrow{
+  font-size:18px;
+  font-weight:900;
+  letter-spacing:.16em;
+}
 @media(max-width:800px){
-  html:not([lang="id"]) .statement h2{font-size:60px}
+  html:not([lang="id"]) .statement h2{font-size:66px}
+  html:not([lang="id"]) .statement .eyebrow{
+    font-size:13px;
+    font-weight:900;
+    letter-spacing:.15em;
+  }
 }
 
 html[lang="id"] .statement h2{font-size:clamp(29.96px,11.449vw,112.35px)}
