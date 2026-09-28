@@ -819,7 +819,10 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
   }
   html[lang="id"] .statement h2{
     font-size:clamp(128px,10.8vw,128px);
-    line-height:.95;
+    line-height:.88;
+  }
+  html[lang="id"] .statement h2 em{
+    margin-top:.12em;
   }
   html[lang="id"] .statement .eyebrow{
     font-size:24px;
