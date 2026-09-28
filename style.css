@@ -818,7 +818,7 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
     -webkit-text-stroke:.35px #fff;
   }
   html[lang="id"] .statement h2{
-    font-size:clamp(130px,10.8vw,130px);
+    font-size:clamp(135px,11.2vw,135px);
     line-height:.88;
   }
   html[lang="id"] .statement h2 em{
