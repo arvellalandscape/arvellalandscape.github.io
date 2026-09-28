@@ -569,3 +569,25 @@ document.addEventListener("DOMContentLoaded", () => {
     window.parent.history.back();
   });
 });
+
+
+// Reliable statement-garden background loader.
+document.addEventListener("DOMContentLoaded", () => {
+  const bg = document.querySelector(".statement-bg");
+  if (!bg) return;
+  fetch("assets/images/statement-garden.b64?v=1", { cache: "no-store" })
+    .then((response) => {
+      if (!response.ok) throw new Error("statement image data unavailable");
+      return response.text();
+    })
+    .then((data) => {
+      const binary = atob(data.trim());
+      const bytes = new Uint8Array(binary.length);
+      for (let i = 0; i < binary.length; i++) bytes[i] = binary.charCodeAt(i);
+      const url = URL.createObjectURL(new Blob([bytes], { type: "image/jpeg" }));
+      bg.style.backgroundImage = 'url("' + url + '")';
+      bg.style.backgroundPosition = "center center";
+      bg.style.backgroundSize = "cover";
+    })
+    .catch(() => {});
+});
