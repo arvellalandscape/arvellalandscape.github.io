@@ -818,8 +818,8 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
     -webkit-text-stroke:.35px #fff;
   }
   html[lang="id"] .statement h2{
-    font-size:clamp(118px,10vw,118px);
-    line-height:.94;
+    font-size:clamp(128px,10.8vw,128px);
+    line-height:1.01;
   }
   html[lang="id"] .statement .eyebrow{
     font-size:24px;
