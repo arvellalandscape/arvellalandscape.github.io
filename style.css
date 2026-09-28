@@ -817,6 +817,12 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
     letter-spacing:.14em;
     -webkit-text-stroke:.35px #fff;
   }
+  html[lang="id"] .statement .eyebrow{
+    font-size:24px;
+    font-weight:900 !important;
+    letter-spacing:.14em;
+    -webkit-text-stroke:.35px #fff;
+  }
 }
 
 /* Statement eyebrow: solid white and bold on desktop + mobile. */
