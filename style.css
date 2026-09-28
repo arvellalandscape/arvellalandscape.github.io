@@ -894,3 +894,10 @@ html[lang="id"] .contact h2 em{white-space:nowrap}
     transform:none;
   }
 }
+
+/* Mobile: bring the statement eyebrow closer to the headline without moving the headline. */
+@media(max-width:800px){
+  .statement .eyebrow{
+    transform:translateY(8px);
+  }
+}
