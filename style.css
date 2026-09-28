@@ -808,6 +808,12 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
 }
 
 /* Keep complete Indonesian phrases together at both layout breakpoints. */
+/* English statement text slightly larger; Indonesian sizing remains unchanged. */
+html:not([lang="id"]) .statement h2{font-size:clamp(60px,8.6vw,132px)}
+@media(max-width:800px){
+  html:not([lang="id"]) .statement h2{font-size:60px}
+}
+
 html[lang="id"] .statement h2{font-size:clamp(29.96px,11.449vw,112.35px)}
 html[lang="id"] .statement-phrase{white-space:nowrap}
 html[lang="id"] .statement-phrase > span{display:inline}
