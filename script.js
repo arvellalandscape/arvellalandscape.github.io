@@ -575,7 +575,7 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
   const bg = document.querySelector(".statement-bg");
   if (!bg) return;
-  fetch("assets/images/statement-garden.b64?v=1", { cache: "no-store" })
+  fetch("assets/images/statement-garden.b64?v=2", { cache: "no-store" })
     .then((response) => {
       if (!response.ok) throw new Error("statement image data unavailable");
       return response.text();
