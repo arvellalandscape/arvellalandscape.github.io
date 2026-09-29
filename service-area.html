@@ -18,7 +18,22 @@
     .page{padding:34px 6vw 90px}
     .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:90px}
     .brand{font:800 18px var(--display);letter-spacing:.12em}
-    .back{font-size:13px;border-bottom:1px solid var(--ink);padding-bottom:5px}
+    .back{
+      font-size:13px;
+      border-bottom:1px solid var(--ink);
+      padding-bottom:5px;
+      -webkit-tap-highlight-color:transparent;
+      tap-highlight-color:transparent;
+      outline:none;
+    }
+    .back:focus,
+    .back:active,
+    .back:visited{
+      color:inherit;
+      background:transparent;
+      outline:none;
+      box-shadow:none;
+    }
     .label{font-size:10px;letter-spacing:.22em;font-weight:600;color:var(--muted);margin-bottom:28px}
     .hero{display:flex;flex-direction:column;align-items:center;gap:42px;width:100%;margin:0 auto}
     .map{width:min(100%,1000px);margin:0 auto;display:flex;justify-content:center}
