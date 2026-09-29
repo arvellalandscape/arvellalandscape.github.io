@@ -43,9 +43,41 @@
     h1 em{display:block;font-family:var(--serif);font-weight:400}
     .lead{font-size:20px;line-height:1.55;max-width:760px;margin-bottom:26px}
     .note{max-width:760px;border-top:1px solid var(--line);padding-top:22px;color:var(--muted);font-size:15px;line-height:1.75}
-    .coverage{margin-top:70px;border-top:1px solid var(--line);padding-top:24px;display:grid;grid-template-columns:1fr 1fr;gap:40px}
-    .coverage h2{font:600 24px var(--display);margin-bottom:12px}
-    .coverage p{color:var(--muted);line-height:1.7;font-size:14px;max-width:480px}
+    .coverage{
+      margin-top:96px;
+      border-top:1px solid var(--line);
+      padding-top:34px;
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:0;
+    }
+    .coverage-item{
+      padding-right:48px;
+    }
+    .coverage-item + .coverage-item{
+      padding-left:48px;
+      padding-right:0;
+      border-left:1px solid var(--line);
+    }
+    .coverage-kicker{
+      margin-bottom:20px;
+      color:var(--muted);
+      font-size:10px;
+      font-weight:600;
+      letter-spacing:.2em;
+    }
+    .coverage h2{
+      font:600 31px/1.08 var(--display);
+      letter-spacing:-.035em;
+      margin-bottom:18px;
+      max-width:560px;
+    }
+    .coverage p:not(.coverage-kicker){
+      color:var(--muted);
+      line-height:1.75;
+      font-size:15px;
+      max-width:560px;
+    }
     @media(min-width:801px){
       .map{width:min(100%,1000px)}
       .map img{width:100%;max-width:none}
@@ -56,7 +88,29 @@
       .hero{grid-template-columns:1fr;gap:42px}
       h1{font-size:14vw}
       .lead{font-size:17px}
-      .coverage{grid-template-columns:1fr;gap:28px;margin-top:52px}
+      .coverage{
+        grid-template-columns:1fr;
+        gap:0;
+        margin-top:64px;
+        padding-top:28px;
+      }
+      .coverage-item{
+        padding:0 0 30px;
+      }
+      .coverage-item + .coverage-item{
+        padding:30px 0 0;
+        border-left:0;
+        border-top:1px solid var(--line);
+      }
+      .coverage h2{
+        font-size:25px;
+        line-height:1.12;
+        margin-bottom:14px;
+      }
+      .coverage p:not(.coverage-kicker){
+        font-size:14px;
+        line-height:1.7;
+      }
     }
   </style>
 </head>
@@ -83,15 +137,59 @@
     </section>
 
     <section class="coverage">
-      <div>
-        <h2>Primary Area</h2>
-        <p>Our regular design, build, and garden care services are focused across Jabodetabek.</p>
-      </div>
-      <div>
-        <h2>Outside Jabodetabek</h2>
-        <p>For larger-scale projects, we can evaluate work outside our primary service area on a case-by-case basis.</p>
-      </div>
+      <article class="coverage-item">
+        <p class="coverage-kicker" data-en="PRIMARY AREA" data-id="AREA UTAMA">PRIMARY AREA</p>
+        <h2 data-en="Close to the site. Close to the process." data-id="Dekat dengan lokasi. Dekat dengan prosesnya.">Close to the site. Close to the process.</h2>
+        <p data-en="Jabodetabek is our core service area, allowing us to stay close to each project, coordinate efficiently on site, and respond quickly when conditions change."
+           data-id="Jabodetabek adalah area utama layanan kami, sehingga kami dapat tetap dekat dengan setiap proyek, berkoordinasi secara efektif di lapangan, dan merespons dengan cepat ketika kondisi berubah.">
+          Jabodetabek is our core service area, allowing us to stay close to each project, coordinate efficiently on site, and respond quickly when conditions change.
+        </p>
+      </article>
+      <article class="coverage-item">
+        <p class="coverage-kicker" data-en="BEYOND JABODETABEK" data-id="DI LUAR JABODETABEK">BEYOND JABODETABEK</p>
+        <h2 data-en="Selected projects, considered carefully." data-id="Proyek tertentu, dipertimbangkan dengan cermat.">Selected projects, considered carefully.</h2>
+        <p data-en="For selected projects outside the region, we consider distance, accessibility, project scale, logistics, and on-site requirements before taking them on."
+           data-id="Untuk proyek tertentu di luar wilayah Jabodetabek, kami mempertimbangkan jarak, aksesibilitas, skala proyek, logistik, dan kebutuhan pekerjaan di lapangan sebelum mengambilnya.">
+          For selected projects outside the region, we consider distance, accessibility, project scale, logistics, and on-site requirements before taking them on.
+        </p>
+      </article>
     </section>
   </main>
+
+  <script>
+    (() => {
+      const nodes = document.querySelectorAll("[data-en][data-id]");
+      const setLanguage = (language) => {
+        const lang = language === "id" ? "id" : "en";
+        document.documentElement.lang = lang;
+        nodes.forEach((node) => {
+          node.textContent = node.dataset[lang];
+        });
+        document.querySelector(".back").textContent = lang === "id" ? "Kembali ↙" : "Back ↙";
+        document.querySelector(".label").textContent = lang === "id" ? "AREA LAYANAN" : "SERVICE AREA";
+        const primary = document.querySelector(".copy .label");
+        if (primary) primary.textContent = lang === "id" ? "CAKUPAN UTAMA" : "PRIMARY COVERAGE";
+        const h1 = document.querySelector(".copy h1");
+        if (h1) h1.innerHTML = lang === "id" ? "Jabodetabek,<em>sebagai fokus utama.</em>" : "Jabodetabek,<em>by default.</em>";
+        const lead = document.querySelector(".lead");
+        if (lead) lead.textContent = lang === "id"
+          ? "Arvella Landscape melayani Jakarta, Bogor, Depok, Tangerang, dan Bekasi sebagai area utama."
+          : "Arvella Landscape primarily serves Jakarta, Bogor, Depok, Tangerang, and Bekasi.";
+        const note = document.querySelector(".note");
+        if (note) note.textContent = lang === "id"
+          ? "Proyek di luar Jabodetabek dapat dipertimbangkan secara selektif ketika lingkup dan skala proyek memungkinkan pelaksanaan di luar area."
+          : "Projects outside Jabodetabek can be considered selectively when the scope and project volume are large enough to support out-of-area execution.";
+        const title = document.querySelector("title");
+        if (title) title.textContent = lang === "id" ? "Area Layanan — Arvella Landscape" : "Service Area — Arvella Landscape";
+      };
+
+      let language = "en";
+      try {
+        const saved = localStorage.getItem("arvella-language");
+        if (saved === "id" || saved === "en") language = saved;
+      } catch (_) {}
+      setLanguage(language);
+    })();
+  </script>
 </body>
 </html>
