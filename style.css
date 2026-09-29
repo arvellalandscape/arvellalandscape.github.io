@@ -766,6 +766,16 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
     width:max-content;
     font:600 16px/1.1 var(--display);
     color:var(--ink);
+    -webkit-tap-highlight-color:transparent;
+    tap-highlight-color:transparent;
+    outline:none;
+  }
+
+  .menu-panel-item:focus,
+  .menu-panel-item:active{
+    outline:none;
+    box-shadow:none;
+    background:transparent;
   }
   .menu-panel-links b{font:400 12px/1 Arial,Helvetica,sans-serif}
   .menu-language{
