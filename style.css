@@ -253,7 +253,11 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
     border:0;
     cursor:pointer;
     padding:10px;
-    position:relative;
+    position:absolute;
+    top:13px;
+    right:4.5vw;
+    left:auto;
+    margin:0;
     z-index:100001;
     opacity:1;
     visibility:visible;
