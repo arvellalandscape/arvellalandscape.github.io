@@ -17,7 +17,7 @@
     a{color:inherit;text-decoration:none}
     .page{padding:34px 6vw 90px}
     .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:90px}
-    .brand{font:800 18px var(--display);letter-spacing:.12em}
+    .brand{font:800 18px var(--display);letter-spacing:.12em;pointer-events:none;cursor:default;user-select:none;-webkit-user-select:none;-webkit-tap-highlight-color:transparent}
     .back{
       font-size:13px;
       border-bottom:1px solid var(--ink);
@@ -117,7 +117,7 @@
 <body>
   <main class="page">
     <div class="top">
-      <div class="brand" aria-label="ARVELLA">ARVELLA</div>
+      <div class="brand" aria-label="ARVELLA" aria-disabled="true" tabindex="-1">ARVELLA</div>
       <a class="back" href="index.html">Back ↙</a>
     </div>
 
