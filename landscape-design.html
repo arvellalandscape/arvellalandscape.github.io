@@ -11,7 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css?v=74" />
 <style>
-.design-page .nav{position:relative;color:var(--ink);animation:none !important;opacity:1 !important;transform:none !important;will-change:auto}
+.design-page .nav{position:relative;color:var(--ink) !important;animation:none !important;animation-delay:0s !important;animation-duration:0s !important;opacity:1 !important;transform:none !important;transition:none !important;will-change:auto !important}
 .design-page .nav .brand{color:var(--ink)}
 .design-page .design-content{padding:70px 7vw 100px}
 .design-layout{display:grid;grid-template-columns:1fr 1fr;gap:7vw;align-items:center}
@@ -22,6 +22,7 @@
 .design-page .design-back{display:inline-block;margin-bottom:40px;border-bottom:1px solid currentColor;padding-bottom:6px}
 .design-page a{-webkit-tap-highlight-color:transparent}
 @media(max-width:800px){.design-layout{grid-template-columns:1fr;gap:36px}.design-page .design-content{padding:35px 6vw 70px}}
+body.design-page .nav,.design-page .nav .brand,.design-page .nav .menu-toggle{animation:none !important;animation-delay:0s !important;animation-duration:0s !important;transition:none !important;opacity:1 !important;transform:none !important;will-change:auto !important;}
 </style>
 </head>
 <body class="design-page">
@@ -81,6 +82,6 @@
     <p>© 2026 Arvella Landscape</p>
   </footer>
 
-  <script src="script.js?v=47"></script>
+  <script src="script.js?v=48"></script>
 </body>
 </html>
