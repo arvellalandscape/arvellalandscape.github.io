@@ -193,7 +193,7 @@ footer{padding:30px 4.5vw;border-top:1px solid var(--line);display:grid;grid-tem
 .footer-links{display:flex;gap:35px;justify-content:center;font-size:18px}
 footer p{text-align:right;color:var(--muted);font-size:10px}
 @media(max-width:800px){
- .desktop-menu,.nav-cta{display:none}.menu-toggle{display:flex;position:absolute;right:4.5vw;top:13px;width:44px;height:56px;align-items:center;justify-content:center;flex-direction:column;gap:5px;margin:0;padding:10px;z-index:100001}.menu-toggle span{display:block;width:24px;height:1px;background:#111!important}
+ .desktop-menu,.nav-cta{display:none}.menu-toggle{display:flex;position:static;width:auto;height:auto;align-items:center;justify-content:center;flex-direction:column;gap:5px;margin-left:auto;padding:10px;z-index:100001}.menu-toggle span{display:block;width:24px;height:1px;background:#111!important}
  .hero{padding:0 6vw 7vh}.hero h1{font-size:18vw}.hero-meta{display:none}
  .display-text{font-size:7.5vw;line-height:1.02;}
  .section{padding:100px 6vw}.section-label{margin-bottom:35px}
@@ -886,44 +886,6 @@ html[lang="id"] .contact h2 em{white-space:nowrap}
   body.menu-open.menu-closing .menu-close{animation:none}
 }
 
-/* Return the brand and hamburger after closing at every screen size. */
-  body.nav-return-pending .nav .brand,
-  body.nav-return-pending .menu-toggle{
-    opacity:0;
-    transform:scale(.72);
-    pointer-events:none;
-  }
-
-  .nav .brand.brand-returning{
-    animation:navItemReveal .5s cubic-bezier(.2,.75,.25,1) both;
-    transform-origin:center;
-  }
-
-  .menu-toggle.menu-toggle-returning{
-    animation:navItemReveal .5s cubic-bezier(.2,.75,.25,1) both;
-    transform-origin:center;
-  }
-
-  @keyframes navItemReveal{
-    from{
-      opacity:0;
-      transform:scale(.72);
-    }
-    to{
-      opacity:1;
-      transform:scale(1);
-    }
-  }
-
-
-@media(prefers-reduced-motion:reduce){
-  .nav .brand.brand-returning,
-  .menu-toggle.menu-toggle-returning{
-    animation:none;
-    opacity:1;
-    transform:none;
-  }
-}
 
 /* Mobile: bring the statement eyebrow closer to the headline without moving the headline. */
 @media(max-width:800px){
