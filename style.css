@@ -193,7 +193,7 @@ footer{padding:30px 4.5vw;border-top:1px solid var(--line);display:grid;grid-tem
 .footer-links{display:flex;gap:35px;justify-content:center;font-size:18px}
 footer p{text-align:right;color:var(--muted);font-size:10px}
 @media(max-width:800px){
- .desktop-menu,.nav-cta{display:none}.menu-toggle{display:flex;flex-direction:column;gap:5px}.menu-toggle span{display:block;width:24px;height:1px;background:#111!important}
+ .desktop-menu,.nav-cta{display:none}.menu-toggle{display:flex;position:absolute;right:4.5vw;top:13px;width:44px;height:56px;align-items:center;justify-content:center;flex-direction:column;gap:5px;margin:0;padding:10px;z-index:100001}.menu-toggle span{display:block;width:24px;height:1px;background:#111!important}
  .hero{padding:0 6vw 7vh}.hero h1{font-size:18vw}.hero-meta{display:none}
  .display-text{font-size:7.5vw;line-height:1.02;}
  .section{padding:100px 6vw}.section-label{margin-bottom:35px}
