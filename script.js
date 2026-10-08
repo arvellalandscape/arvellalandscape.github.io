@@ -461,6 +461,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Linked services: two presses within 2.5 seconds, then navigate immediately.
 document.addEventListener("DOMContentLoaded", () => {
+  const landscapeDesignCard = document.querySelector('#services a.service-card[href*="landscape-design.html"]');
+  if (landscapeDesignCard) preloadDesignView(landscapeDesignCard.href);
   document.querySelectorAll("#services a.service-card[href]").forEach((card) => {
     let navigationTimer = null;
     let pressTimer = null;
