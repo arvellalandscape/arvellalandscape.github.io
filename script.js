@@ -459,7 +459,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (close) close.addEventListener("click", () => setOpen(false));
 });
 
-// Linked services: two presses within 2.5 seconds, then navigate after 500 ms.
+// Linked services: two presses within 2.5 seconds, then navigate immediately.
 document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll("#services a.service-card[href]").forEach((card) => {
     let navigationTimer = null;
@@ -487,7 +487,7 @@ document.addEventListener("DOMContentLoaded", () => {
         openDesignView(card.href);
         navigationTimer = null;
         card.classList.remove("is-pressed");
-      }, 500);
+      }, 0);
     });
     card.addEventListener("keydown", (event) => {
       if (event.key === "Enter" && event.repeat) event.preventDefault();
