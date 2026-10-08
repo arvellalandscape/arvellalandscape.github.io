@@ -480,6 +480,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if (firstPressTime === null || now - firstPressTime >= 2500) {
         resetPress();
         firstPressTime = now;
+        card.classList.add("is-pressed");
+        window.setTimeout(() => card.classList.remove("is-pressed"), 1000);
         if (card.href.includes("landscape-design.html")) preloadDesignView(card.href);
         pressTimer = window.setTimeout(() => {
           resetPress();
