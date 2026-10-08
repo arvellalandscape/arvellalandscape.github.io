@@ -478,16 +478,21 @@ document.addEventListener("DOMContentLoaded", () => {
       if (firstPressTime === null || now - firstPressTime >= 2500) {
         resetPress();
         firstPressTime = now;
-        pressTimer = window.setTimeout(resetPress, 2500);
+        if (card.href.includes("landscape-design.html")) preloadDesignView(card.href);
+        pressTimer = window.setTimeout(() => {
+          resetPress();
+          if (designFrame && designFrame.dataset.preloaded === "true") {
+            designFrame.remove();
+            designFrame = null;
+          }
+        }, 2500);
         return;
       }
       resetPress();
       card.classList.add("is-pressed");
-      navigationTimer = window.setTimeout(() => {
-        openDesignView(card.href);
-        navigationTimer = null;
-        card.classList.remove("is-pressed");
-      }, 0);
+      openDesignView(card.href);
+      navigationTimer = null;
+      card.classList.remove("is-pressed");
     });
     card.addEventListener("keydown", (event) => {
       if (event.key === "Enter" && event.repeat) event.preventDefault();
@@ -515,7 +520,34 @@ let serviceReturnCard = null;
 let designScroll = { x: 0, y: 0 };
 // This document retains its own scroll while the detail view is open.
 if (document.querySelector("#services")) history.scrollRestoration = "manual";
+function preloadDesignView(url) {
+  if (designFrame || !url.includes("landscape-design.html")) return;
+  const frame = document.createElement("iframe");
+  frame.title = "Landscape Design";
+  frame.dataset.designView = "true";
+  frame.dataset.preloaded = "true";
+  frame.style.cssText = "position:fixed;inset:0;width:100%;height:100%;border:0;z-index:2147483647;background:url(\"assets/images/garden-design-photo.jpg\") center center / cover no-repeat;opacity:0;visibility:hidden;pointer-events:none";
+  frame.src = url;
+  designFrame = frame;
+  document.body.appendChild(frame);
+}
 function openDesignView(url, push = true) {
+  if (designFrame && designFrame.dataset.preloaded === "true") {
+    designFrame.dataset.preloaded = "false";
+    designFrame.style.opacity = "1";
+    designFrame.style.visibility = "visible";
+    designFrame.style.pointerEvents = "auto";
+    designHiddenElements = Array.from(document.body.children).filter(el => el.tagName !== "SCRIPT" && el !== designFrame);
+    designHiddenElements.forEach(el => { el.inert = true; });
+    designOverflow = document.documentElement.style.overflow;
+    designScroll = { x: window.scrollX, y: window.scrollY };
+    homeTitle = document.title;
+    document.documentElement.style.overflow = "hidden";
+    if (push) history.pushState({ ...history.state, arvellaDesignView: true, designURL: url }, "", url);
+    document.title = "Landscape Design — ARVELLA";
+    designFrame.focus({ preventScroll: true });
+    return;
+  }
   if (designFrame) return;
   serviceReturnCard = Array.from(document.querySelectorAll("#services a.service-card")).find(card => card.href === url) || null;
   const serviceTitle = url.includes("landscape-build.html") ? "Landscape Build" : url.includes("garden-care.html") ? "Garden Care" : "Landscape Design";
