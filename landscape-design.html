@@ -29,7 +29,7 @@
   position:fixed;
   inset:0;
   z-index:-1;
-  background:rgba(242,240,232,.16);
+  background:transparent;
   pointer-events:none;
 }
 .design-page .nav{
@@ -43,7 +43,7 @@
   transition:none !important;
   will-change:auto !important;
 }
-.design-page .nav .brand{color:var(--ink)}
+.design-page .nav .brand{color:#fff}
 .design-page .design-content{padding:70px 7vw 100px;position:relative;z-index:1}
 .design-layout{display:grid;grid-template-columns:1fr 1fr;gap:7vw;align-items:center}
 .design-layout img{width:100%;height:auto;display:block}
@@ -70,6 +70,14 @@ body.design-page .nav,.design-page .nav .brand,.design-page .nav .menu-toggle{an
 }
 .design-page .menu-toggle span{
   background:#fff !important;
+}
+.design-page .nav,
+.design-page .nav *,
+.design-page .design-content,
+.design-page .design-content *,
+.design-page footer,
+.design-page footer *{
+  font-weight:700 !important;
 }
 </style>
 </head>
