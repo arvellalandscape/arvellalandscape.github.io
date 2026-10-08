@@ -527,7 +527,7 @@ function openDesignView(url, push = true) {
   const frame = document.createElement("iframe");
   frame.title = serviceTitle;
   frame.dataset.designView = "true";
-  frame.style.cssText = "position:fixed;inset:0;width:100%;height:100%;border:0;z-index:2147483647;background:#f2f0e8";
+  frame.style.cssText = "position:fixed;inset:0;width:100%;height:100%;border:0;z-index:2147483647;background:url(\"assets/images/garden-design-photo.jpg\") center center / cover no-repeat";
   frame.src = url;
   designFrame = frame;
   document.body.appendChild(frame);
