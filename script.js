@@ -491,9 +491,12 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
       resetPress();
-      openDesignView(card.href);
-      showServiceCardPop(card);
-      navigationTimer = null;
+      card.classList.add("is-pressed");
+      navigationTimer = window.setTimeout(() => {
+        card.classList.remove("is-pressed");
+        openDesignView(card.href);
+        navigationTimer = null;
+      }, 500);
     });
     card.addEventListener("keydown", (event) => {
       if (event.key === "Enter" && event.repeat) event.preventDefault();
@@ -532,28 +535,6 @@ function preloadDesignView(url) {
   designFrame = frame;
   document.body.appendChild(frame);
 }
-function showServiceCardPop(card) {
-  const rect = card.getBoundingClientRect();
-  const clone = card.cloneNode(true);
-
-  clone.style.position = "fixed";
-  clone.style.left = rect.left + "px";
-  clone.style.top = rect.top + "px";
-  clone.style.width = rect.width + "px";
-  clone.style.height = rect.height + "px";
-  clone.style.margin = "0";
-  clone.style.zIndex = "2147483647";
-  clone.style.pointerEvents = "none";
-  clone.style.transformOrigin = "center center";
-
-  clone.classList.remove("is-pressed");
-  document.body.appendChild(clone);
-  void clone.offsetWidth;
-  clone.classList.add("is-pressed");
-
-  window.setTimeout(() => clone.remove(), 1000);
-}
-
 function openDesignView(url, push = true) {
   if (designFrame && designFrame.dataset.preloaded === "true") {
     designFrame.dataset.preloaded = "false";
