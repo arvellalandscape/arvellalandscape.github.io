@@ -3,6 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+  // Lock the background to the visible viewport measured once on initial load.
+  // Deliberately do not update this value when Chrome's address bar hides/shows.
+  (function () {
+    var visibleHeight = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+    document.documentElement.style.setProperty('--stable-viewport-height', Math.round(visibleHeight) + 'px');
+  })();
+</script>
   <meta name="description" content="Arvella Landscape — landscape design, build, and garden care." />
   <title>Arvella Landscape — Crafted Landscapes</title>
   <link rel="icon" type="image/png" sizes="1254x1254" href="favicon-leaf.png?v=2" />
