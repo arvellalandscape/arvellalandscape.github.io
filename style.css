@@ -201,7 +201,7 @@ footer p{text-align:right;color:var(--muted);font-size:10px}
  .service-grid{grid-template-columns:1fr}.service-card{width:100%;height:calc(88vw * 1.25);aspect-ratio:4 / 5;min-height:0;max-height:none;border-right:0;border-bottom:1px solid rgba(242,240,232,.2) }
  .projects{grid-template-columns:1fr;gap:45px}.project-large{grid-row:auto}.project-img,.project-large .project-img{width:100%;height:auto;aspect-ratio:4 / 5}
  .work-head{display:block}.work-head>p{margin-top:20px}.statement{height:75vh;padding:6vw}.contact-main{grid-template-columns:1fr;gap:60px}
- footer{grid-template-columns:1fr;gap:25px;margin-top:32px}.footer-links{justify-content:flex-start;flex-wrap:wrap}footer p{text-align:left}
+ footer{grid-template-columns:1fr;gap:25px;margin-top:48px}.footer-links{justify-content:flex-start;flex-wrap:wrap}footer p{text-align:left}
 .nav{color:#fff}
 .brand{font:800 17px var(--display);color:#fff}
 .desktop-menu a{color:inherit}
