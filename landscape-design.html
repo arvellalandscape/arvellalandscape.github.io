@@ -72,7 +72,37 @@
 
 .design-page .design-back{display:inline-block;margin-bottom:40px;border-bottom:1px solid currentColor;padding-bottom:6px}
 .design-page a{-webkit-tap-highlight-color:transparent}
-@media(max-width:800px){.design-layout{grid-template-columns:1fr;gap:36px}.design-page .design-content{padding:0 6vw 70px;margin-top:-8px}}
+@media(max-width:800px){
+  .design-layout{grid-template-columns:1fr;gap:36px}
+  .design-page .design-content{padding:0 6vw 70px;margin-top:-8px}
+  .design-layout,
+  .design-layout > div{width:100%;min-width:0}
+  .design-layout > div > p:not(.eyebrow){
+    width:100%;
+    max-width:none;
+    box-sizing:border-box;
+    font-size:18px;
+    line-height:1.5;
+    margin-bottom:28px;
+  }
+  .design-approach{
+    width:100%;
+    max-width:none;
+    box-sizing:border-box;
+  }
+  .design-approach h2{
+    font-size:clamp(36px,5.5vw,46px);
+    line-height:.98;
+  }
+  .design-approach p:last-child{
+    width:100%;
+    max-width:none;
+    box-sizing:border-box;
+    font-size:18px;
+    line-height:1.5;
+    margin:0;
+  }
+}
 body.design-page .nav,.design-page .nav .brand,.design-page .nav .menu-toggle{animation:none !important;animation-delay:0s !important;animation-duration:0s !important;transition:none !important;opacity:1 !important;transform:none !important;will-change:auto !important;}
 .design-page,
 .design-page .design-content,
