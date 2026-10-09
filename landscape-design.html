@@ -45,6 +45,10 @@
 }
 .design-page .nav .brand{color:#fff}
 .design-page .design-content{padding:70px 7vw 100px;position:relative;z-index:1}
+@media(max-width:800px){
+  body.design-page{min-height:100svh;display:flex;flex-direction:column}
+  .design-page .design-content{flex:1}
+}
 .design-layout{display:grid;grid-template-columns:1fr 1fr;gap:7vw;align-items:center}
 .design-layout img{width:100%;height:auto;display:block}
 .design-layout h1{font:600 clamp(48px,6vw,90px)/1 var(--display);letter-spacing:-.05em;margin:30px 0}
