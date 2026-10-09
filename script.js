@@ -536,6 +536,10 @@ function preloadDesignView(url) {
   document.body.appendChild(frame);
 }
 function openDesignView(url, push = true) {
+  if (designFrame && designFrame.dataset.preloaded === "true" && !url.includes("landscape-design.html")) {
+    designFrame.remove();
+    designFrame = null;
+  }
   if (designFrame && designFrame.dataset.preloaded === "true") {
     designFrame.dataset.preloaded = "false";
     designFrame.style.opacity = "1";
