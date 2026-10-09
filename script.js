@@ -463,8 +463,6 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
   const landscapeDesignCard = document.querySelector('#services a.service-card[href*="landscape-design.html"]');
   if (landscapeDesignCard) preloadDesignView(landscapeDesignCard.href);
-  const gardenCareCard = document.querySelector('#services a.service-card[href*="garden-care.html"]');
-  if (gardenCareCard) preloadDesignView(gardenCareCard.href);
   document.querySelectorAll("#services a.service-card[href]").forEach((card) => {
     let navigationTimer = null;
     let pressTimer = null;
@@ -545,7 +543,22 @@ function preloadDesignView(url) {
   frame.dataset.preloadUrl = url;
   frame.dataset.ready = "false";
   frame.style.cssText = 'position:fixed;inset:0;width:100%;height:100%;border:0;z-index:2147483647;background:url("' + backgroundImage + '") center center / cover no-repeat;opacity:0;visibility:hidden;pointer-events:none';
-  frame.addEventListener("load", () => { frame.dataset.ready = "true"; }, { once: true });
+  frame.addEventListener("load", async () => {
+    try {
+      const page = frame.contentDocument;
+      if (page && page.fonts && page.fonts.ready) await page.fonts.ready;
+      const image = new Image();
+      image.src = new URL(backgroundImage, url).href;
+      if (image.decode) await image.decode().catch(() => {});
+      else await new Promise(resolve => {
+        image.onload = resolve;
+        image.onerror = resolve;
+      });
+      await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+    } catch (error) {}
+    frame.dataset.ready = "true";
+    frame.dispatchEvent(new Event("arvella-ready"));
+  }, { once: true });
   frame.src = url;
   designFrame = frame;
   document.body.appendChild(frame);
@@ -556,7 +569,7 @@ function openDesignView(url, push = true) {
     designFrame = null;
   }
   if (designFrame && designFrame.dataset.preloaded === "true" && designFrame.dataset.ready !== "true") {
-    designFrame.addEventListener("load", () => openDesignView(url, push), { once: true });
+    designFrame.addEventListener("arvella-ready", () => openDesignView(url, push), { once: true });
     return;
   }
   if (designFrame && designFrame.dataset.preloaded === "true") {
@@ -571,7 +584,8 @@ function openDesignView(url, push = true) {
     homeTitle = document.title;
     document.documentElement.style.overflow = "hidden";
     if (push) history.pushState({ ...history.state, arvellaDesignView: true, designURL: url }, "", url);
-    const serviceTitle = url.includes("landscape-build.html") ? "Landscape Build" : "Landscape Design";
+    serviceReturnCard = Array.from(document.querySelectorAll("#services a.service-card")).find(card => card.href === url) || null;
+    const serviceTitle = url.includes("landscape-build.html") ? "Landscape Build" : url.includes("garden-care.html") ? "Garden Care" : "Landscape Design";
     document.title = serviceTitle + " — ARVELLA";
     designFrame.focus({ preventScroll: true });
     return;
