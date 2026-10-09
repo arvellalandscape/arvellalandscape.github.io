@@ -30,7 +30,7 @@
     linear-gradient(90deg,rgba(0,0,0,.32) 0%,rgba(0,0,0,.24) 35%,rgba(0,0,0,.24) 100%),
     url("assets/images/garden-design-photo.jpg");
   background-position:center, center top;
-  background-size:100% 100%, auto 100lvh;
+  background-size:100% 100%, cover;
   background-repeat:no-repeat, no-repeat;
   pointer-events:none;
 }
@@ -48,6 +48,7 @@
 .design-page .nav .brand{color:#fff}
 .design-page .design-content{padding:70px 7vw 100px;position:relative;z-index:1}
 @media(max-width:800px){
+  .design-page::before{background-size:100% 100%, auto 100lvh}
   body.design-page{min-height:100svh;display:flex;flex-direction:column}
   .design-page .design-content{flex:1}
   .design-page footer{margin-top:32px;padding-top:20px}
