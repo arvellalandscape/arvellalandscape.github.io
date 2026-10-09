@@ -31,7 +31,7 @@
   top:0;
   left:0;
   width:100vw;
-  height:var(--stable-viewport-height, 100svh);
+  height:100lvh;
   z-index:-2;
   background-image:
     linear-gradient(90deg,rgba(0,0,0,.32) 0%,rgba(0,0,0,.24) 35%,rgba(0,0,0,.24) 100%),
@@ -55,7 +55,7 @@
 .design-page .nav .brand{color:#fff}
 .design-page .design-content{padding:70px 7vw 100px;position:relative;z-index:1}
 @media(max-width:800px){
-  .design-page::before{height:100dvh;background-size:100% 100%, auto var(--stable-viewport-height, 100svh)}
+  .design-page::before{height:100lvh;background-size:100% 100%, auto 100lvh}
   body.design-page{min-height:var(--stable-viewport-height, 100svh);display:flex;flex-direction:column}
   .design-page .design-content{flex:1}
   .design-page footer{margin-top:32px;padding-top:20px}
