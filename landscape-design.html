@@ -20,20 +20,15 @@
 .design-page::before{
   content:"";
   position:fixed;
-  inset:0;
+  top:0;
+  left:0;
   width:100vw;
-  height:100vh;
   height:100lvh;
   z-index:-2;
   background:
     linear-gradient(90deg,rgba(0,0,0,.32) 0%,rgba(0,0,0,.24) 35%,rgba(0,0,0,.24) 100%),
-    url("assets/images/garden-design-photo.jpg") center center / cover no-repeat;
+    url("assets/images/garden-design-photo.jpg") center top / cover no-repeat;
   pointer-events:none;
-}
-@supports (height: 100dvh) {
-  .design-page::before {
-    top: calc(100dvh - 100lvh);
-  }
 }
 .design-page .nav{
   position:relative;
