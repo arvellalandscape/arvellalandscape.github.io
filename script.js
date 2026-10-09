@@ -567,9 +567,13 @@ function openDesignView(url, push = true) {
   const frame = document.createElement("iframe");
   frame.title = serviceTitle;
   frame.dataset.designView = "true";
-  frame.style.cssText = "position:fixed;inset:0;width:100%;height:100%;border:0;z-index:2147483647;background:#f2f0e8";
+  frame.style.cssText = "position:fixed;inset:0;width:100%;height:100%;border:0;z-index:2147483647;background:#142018";
   if (url.includes("landscape-design.html")) {
     frame.style.background = 'url("assets/images/garden-design-photo.jpg") center center / cover no-repeat';
+  } else if (url.includes("landscape-build.html")) {
+    frame.style.background = 'url("assets/images/garden-build-photo.jpg") center center / cover no-repeat';
+  } else if (url.includes("garden-care.html")) {
+    frame.style.background = 'url("assets/images/garden-care-photo.jpg") center center / cover no-repeat';
   }
   frame.src = url;
   designFrame = frame;
