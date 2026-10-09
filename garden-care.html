@@ -3,6 +3,14 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+  // Lock the background to the visible viewport measured once on initial load.
+  // Deliberately do not update this value when Chrome's address bar hides/shows.
+  (function () {
+    var visibleHeight = window.visualViewport ? window.visualViewport.height : window.innerHeight;
+    document.documentElement.style.setProperty('--stable-viewport-height', Math.round(visibleHeight) + 'px');
+  })();
+</script>
   <meta name="description" content="Arvella Landscape — landscape design, build, and garden care." />
   <title>Garden Care — ARVELLA</title>
   <link rel="icon" type="image/png" sizes="1254x1254" href="favicon-leaf.png?v=2" />
@@ -23,7 +31,7 @@
   top:0;
   left:0;
   width:100vw;
-  height:100svh;
+  height:var(--stable-viewport-height, 100svh);
   z-index:-2;
   background-image:
     linear-gradient(90deg,rgba(0,0,0,.32) 0%,rgba(0,0,0,.24) 35%,rgba(0,0,0,.24) 100%),
@@ -47,8 +55,8 @@
 .design-page .nav .brand{color:#fff}
 .design-page .design-content{padding:70px 7vw 100px;position:relative;z-index:1}
 @media(max-width:800px){
-  .design-page::before{background-size:100% 100%, auto 100svh}
-  body.design-page{min-height:100svh;display:flex;flex-direction:column}
+  .design-page::before{background-size:100% 100%, auto var(--stable-viewport-height, 100svh)}
+  body.design-page{min-height:var(--stable-viewport-height, 100svh);display:flex;flex-direction:column}
   .design-page .design-content{flex:1}
   .design-page footer{margin-top:32px;padding-top:20px}
 }
