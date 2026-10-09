@@ -463,6 +463,8 @@ document.addEventListener("DOMContentLoaded", () => {
 document.addEventListener("DOMContentLoaded", () => {
   const landscapeDesignCard = document.querySelector('#services a.service-card[href*="landscape-design.html"]');
   if (landscapeDesignCard) preloadDesignView(landscapeDesignCard.href);
+  const gardenCareCard = document.querySelector('#services a.service-card[href*="garden-care.html"]');
+  if (gardenCareCard) preloadDesignView(gardenCareCard.href);
   document.querySelectorAll("#services a.service-card[href]").forEach((card) => {
     let navigationTimer = null;
     let pressTimer = null;
@@ -480,7 +482,7 @@ document.addEventListener("DOMContentLoaded", () => {
       if (firstPressTime === null || now - firstPressTime >= 2500) {
         resetPress();
         firstPressTime = now;
-        if (card.href.includes("landscape-design.html") || card.href.includes("landscape-build.html")) preloadDesignView(card.href);
+        if (card.href.includes("landscape-design.html") || card.href.includes("landscape-build.html") || card.href.includes("garden-care.html")) preloadDesignView(card.href);
         pressTimer = window.setTimeout(() => {
           resetPress();
           if (designFrame && designFrame.dataset.preloaded === "true") {
@@ -525,10 +527,11 @@ let designScroll = { x: 0, y: 0 };
 // This document retains its own scroll while the detail view is open.
 if (document.querySelector("#services")) history.scrollRestoration = "manual";
 function preloadDesignView(url) {
-  if (designFrame || (!url.includes("landscape-design.html") && !url.includes("landscape-build.html"))) return;
+  if (designFrame || (!url.includes("landscape-design.html") && !url.includes("landscape-build.html") && !url.includes("garden-care.html"))) return;
   const isBuild = url.includes("landscape-build.html");
-  const serviceTitle = isBuild ? "Landscape Build" : "Landscape Design";
-  const backgroundImage = isBuild ? "assets/images/garden-build-photo.jpg" : "assets/images/garden-design-photo.jpg";
+  const isCare = url.includes("garden-care.html");
+  const serviceTitle = isBuild ? "Landscape Build" : isCare ? "Garden Care" : "Landscape Design";
+  const backgroundImage = isBuild ? "assets/images/garden-build-photo.jpg" : isCare ? "assets/images/garden-care-photo.jpg" : "assets/images/garden-design-photo.jpg";
   const frame = document.createElement("iframe");
   frame.title = serviceTitle;
   frame.dataset.designView = "true";
