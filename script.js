@@ -527,7 +527,13 @@ let designScroll = { x: 0, y: 0 };
 // This document retains its own scroll while the detail view is open.
 if (document.querySelector("#services")) history.scrollRestoration = "manual";
 function preloadDesignView(url) {
-  if (designFrame || (!url.includes("landscape-design.html") && !url.includes("landscape-build.html") && !url.includes("garden-care.html"))) return;
+  if (!url.includes("landscape-design.html") && !url.includes("landscape-build.html") && !url.includes("garden-care.html")) return;
+  if (designFrame && designFrame.dataset.preloaded === "true" && designFrame.dataset.preloadUrl === url) return;
+  if (designFrame) {
+    if (designFrame.dataset.preloaded !== "true") return;
+    designFrame.remove();
+    designFrame = null;
+  }
   const isBuild = url.includes("landscape-build.html");
   const isCare = url.includes("garden-care.html");
   const serviceTitle = isBuild ? "Landscape Build" : isCare ? "Garden Care" : "Landscape Design";
