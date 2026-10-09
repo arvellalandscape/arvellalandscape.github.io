@@ -30,6 +30,11 @@
     url("assets/images/garden-care-photo.jpg") center center / cover no-repeat;
   pointer-events:none;
 }
+@supports (height: 100dvh) {
+  .design-page::before {
+    top: calc(100dvh - 100lvh);
+  }
+}
 .design-page .nav{
   position:relative;
   color:var(--ink) !important;
