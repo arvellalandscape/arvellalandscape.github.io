@@ -83,6 +83,10 @@
 .design-example-copy p{display:block;width:100%;max-width:100%;box-sizing:border-box;font-size:18px;line-height:1.5;margin:0;overflow-wrap:break-word}
 .design-example-image{display:block;width:100%;max-width:400px;height:auto;margin-top:40px}
 .design-example-image + .design-example-image{margin-top:48px}
+.design-example-benefits{display:grid;grid-template-columns:1fr 1fr;column-gap:24px;row-gap:20px;width:100%;max-width:400px;margin:40px auto 0}
+.design-example-benefit{display:flex;align-items:center;gap:10px;min-width:0;font-size:13px;line-height:1.4}
+.design-example-benefit svg{width:18px;height:18px;flex:0 0 18px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.design-example-benefit:nth-child(3){grid-column:1 / -1;justify-self:center}
 
 .design-page .design-back{display:inline-block;margin-bottom:40px;border-bottom:1px solid currentColor;padding-bottom:6px}
 .design-page a{-webkit-tap-highlight-color:transparent}
@@ -215,6 +219,20 @@ body.design-page .nav,.design-page .nav .brand,.design-page .nav .menu-toggle{an
           <img class="design-example-image" src="assets/images/tropical-modern-design.jpg" alt="Tropical Modern garden design example" width="400" height="300" loading="lazy" />
           <img class="design-example-image" src="assets/images/tropical-modern-detail.jpg" alt="Tropical Modern garden from a second angle" width="400" height="300" loading="lazy" />
           <img class="design-example-image" src="assets/images/tropical-modern-detail-2.jpg" alt="Tropical Modern garden from a third angle" width="400" height="300" loading="lazy" />
+          <div class="design-example-benefits" aria-label="Tropical Modern features">
+            <div class="design-example-benefit">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 3.5C12 3.7 5.8 5.8 4.1 11.4c-1 3.4 1.5 6.2 4.7 5.6 5.2-1 9-6.2 11.7-13.5Z"/><path d="M3.5 21c2.7-5.2 6.3-8.2 11.3-11.6"/></svg>
+              <span>Nuansa tropis yang segar</span>
+            </div>
+            <div class="design-example-benefit">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7"/><path d="M5.5 9v12h13V9"/><path d="M9.5 21v-7h5v7"/></svg>
+              <span>Tampilan modern dan rapi</span>
+            </div>
+            <div class="design-example-benefit">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8.2a3.8 3.8 0 1 0 0 7.6 3.8 3.8 0 0 0 0-7.6Z"/><path d="m19.4 13.8 1.2 1-.9 2.1-1.5-.1a7.4 7.4 0 0 1-1.6 1l-.4 1.5h-2.4l-.5-1.5a7.4 7.4 0 0 1-1.8 0l-.8 1.3-2.2-.7.1-1.6a7.4 7.4 0 0 1-1.2-1.4l-1.6.1-.7-2.2 1.3-.8a7.4 7.4 0 0 1 0-1.8l-1.3-.8.7-2.2 1.6.1a7.4 7.4 0 0 1 1.2-1.3l-.1-1.6 2.2-.7.8 1.3a7.4 7.4 0 0 1 1.8 0l.5-1.5h2.4l.4 1.5a7.4 7.4 0 0 1 1.6 1l1.5-.1.9 2.1-1.2 1a7.4 7.4 0 0 1 0 2.2Z"/></svg>
+              <span>Perawatan yang mudah</span>
+            </div>
+          </div>
         </section>
       </div>
 
