@@ -63,7 +63,7 @@
 .design-page .nav .menu-toggle{position:absolute !important;top:13px !important;}
 .design-page .design-content{padding:70px 7vw 100px;position:relative;z-index:1}
 @media(max-width:800px){
-  .design-page::before{height:100lvh;background-size:auto 100lvh}
+  .design-page::before{top:calc(100dvh - 100lvh);height:100lvh;background-size:auto 100lvh}
   body.design-page{min-height:var(--stable-viewport-height, 100svh);display:flex;flex-direction:column}
   .design-page .design-content{flex:1}
   .design-page footer{margin-top:32px;padding-top:20px}
