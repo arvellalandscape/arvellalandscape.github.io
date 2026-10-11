@@ -62,6 +62,11 @@
 .design-page .nav .brand{color:#fff}
 .design-page .nav .menu-toggle{position:absolute !important;top:13px !important;}
 .design-page .design-content{padding:70px 7vw 100px;position:relative;z-index:1}
+@media(min-width:801px){
+  .design-page .design-content{width:100%;box-sizing:border-box;padding-left:7vw;padding-right:7vw}
+  .design-page .design-layout,.design-page .design-example-copy,.design-page .design-final-cta{min-width:0;max-width:100%;box-sizing:border-box}
+  .design-page .design-layout img,.design-page .design-example-image{max-width:100%;box-sizing:border-box}
+}
 @media(max-width:800px){
   .design-layout h1{margin-top:25px}
 
