@@ -114,15 +114,11 @@
 .design-page .design-back{display:inline-block;margin-bottom:40px;border-bottom:1px solid currentColor;padding-bottom:6px}
 @media(min-width:801px){
   .design-page .design-back{font-size:27px}
-  .design-layout > div > .eyebrow:first-child{font-size:21px}
+  .design-layout > div > .eyebrow:first-child,
+  .design-approach > .eyebrow,
+  .design-example-copy > .eyebrow{font-size:21px}
 }
-/* Desktop highlight headings: lock only these headings to 150px. */
-@media(min-width:801px){
-  .design-layout h1,
-  .design-approach h2,
-  .design-example-copy h2,
-  .design-final-cta h2{font-size:150px !important}
-}
+
 .design-page a{-webkit-tap-highlight-color:transparent}
 @media(max-width:800px){
   .design-layout{grid-template-columns:minmax(0,1fr);gap:36px}
