@@ -194,6 +194,8 @@ body.design-page .nav,.design-page .nav .brand,.design-page .nav .menu-toggle{an
 .design-final-cta-button:focus,.design-final-cta-button:focus-visible,.design-final-cta-button:active{outline:none;box-shadow:none;background:transparent;-webkit-tap-highlight-color:transparent}
 
 .design-final-cta h2,.design-final-cta h2 em{font-weight:700 !important}
+.design-final-cta .cta-title-desktop{display:inline}
+.design-final-cta .cta-title-mobile{display:none}
 .design-final-cta h2{font-size:calc(clamp(48px,6vw,90px) + 2px)}
 @media(min-width:801px){
   .design-final-cta h2{font-size:125px}
@@ -207,7 +209,10 @@ body.design-page .nav,.design-page .nav .brand,.design-page .nav .menu-toggle{an
   .design-example-copy p:not(.eyebrow),
   .design-final-cta p{width:100% !important;max-width:40em !important;box-sizing:border-box}
 }
-@media(max-width:800px){.design-final-cta{margin:0 6vw 24px;padding-top:0}.design-final-cta p{display:block;width:100%;min-width:0;max-width:100%;box-sizing:border-box;overflow-wrap:break-word;font-size:18px;line-height:1.5;margin-bottom:28px}
+@media(max-width:800px){
+  .design-final-cta .cta-title-desktop{display:none}
+  .design-final-cta .cta-title-mobile{display:inline}
+  .design-final-cta{margin:0 6vw 24px;padding-top:0}.design-final-cta p{display:block;width:100%;min-width:0;max-width:100%;box-sizing:border-box;overflow-wrap:break-word;font-size:18px;line-height:1.5;margin-bottom:28px}
 
 
 </style>
@@ -312,7 +317,7 @@ body.design-page .nav,.design-page .nav .brand,.design-page .nav .menu-toggle{an
   </main>
   <section class="design-final-cta" aria-labelledby="design-final-cta-title">
       <div class="design-final-cta-copy">
-        <h2 id="design-final-cta-title">Ready to Design<br><em>Your Garden?</em></h2>
+        <h2 id="design-final-cta-title"><span class="cta-title-desktop">Ready to<br>Design Your<br><em>Garden?</em></span><span class="cta-title-mobile">Ready to Design<br><em>Your Garden?</em></span></h2>
         <p>Let’s discuss your garden ideas and needs. We’re ready to help you create a greener, more vibrant space.</p>
       </div>
       <a class="design-final-cta-button" href="https://wa.me/6285741951002?text=Halo%20Mutiara%20Garden%20%F0%9F%91%8B%0AMau%20konsultasi%20dong%2C%20bisa%20tolong%20dibantu%3F" target="_blank" rel="noopener noreferrer">Start a Consultation Now <span aria-hidden="true">→</span></a>
